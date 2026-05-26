@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АЛЬФА - B2B порталы под ключ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #2C3E50;
+            line-height: 1.5;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #E2E8F0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 160px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2C3E50;
+        }
+
+        .nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #4A5568;
+            font-size: 16px;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover {
+            color: #667EEA;
+        }
+
+        .phone {
+            font-size: 16px;
+            color: #2C3E50;
+            margin-right: 40px;
+        }
+
+        .btn-cabinet {
+            padding: 16px 32px;
+            background: #3498DB;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-cabinet:hover {
+            background: #2980B9;
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 80px;
+            height: 720px;
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 120px 160px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #E2E8F0;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            padding: 18px 40px;
+            background: white;
+            color: #667EEA;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            padding: 18px 40px;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 24px;
+            color: #E2E8F0;
+            font-size: 16px;
+        }
+
+        .trust-badges span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Advantages */
+        .advantages {
+            padding: 120px 160px;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #2C3E50;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: #667EEA;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #2C3E50;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #4A5568;
+            line-height: 1.6;
+        }
+
+        /* Services */
+        .services {
+            padding: 120px 160px;
+            background: #F7FAFC;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: #4A5568;
+            margin-bottom: 16px;
+        }
+
+        .service-link {
+            color: #667EEA;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Video Section */
+        .videos {
+            padding: 120px 160px;
+            background: white;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .video-card {
+            background: #F7FAFC;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .video-info {
+            padding: 24px;
+        }
+
+        .video-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .video-duration {
+            font-size: 14px;
+            color: #4A5568;
+        }
+
+        /* Content Preview */
+        .content-preview {
+            padding: 120px 160px;
+            background: #F7FAFC;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 160px;
+            background: #E2E8F0;
+        }
+
+        .article-content {
+            padding: 24px;
+        }
+
+        .article-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #667EEA;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .article-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #2C3E50;
+        }
+
+        .article-meta {
+            font-size: 14px;
+            color: #4A5568;
+        }
+
+        /* Calculator */
+        .calculator {
+            padding: 100px 160px;
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+        }
+
+        .calculator h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .calc-form {
+            max-width: 960px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .calc-field select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .calc-btn {
+            grid-column: span 3;
+            padding: 16px;
+            background: #667EEA;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 160px;
+            background: #2C3E50;
+            color: white;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #E2E8F0;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #E2E8F0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">АЛЬФА</div>
+            <nav class="nav">
+                <a href="#">Услуги</a>
+                <a href="#">Решения</a>
+                <a href="#">Контент</a>
+                <a href="#">О нас</a>
+                <a href="#">Контакты</a>
+            </nav>
+            <div class="phone">+7 (812) 467-34-77</div>
+            <button class="btn-cabinet">Личный кабинет</button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>B2B порталы под ключ</h1>
+                <p>Создание и аренда B2B порталов с интеграцией 1С и автоматизацией бизнес-процессов</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">Рассчитать стоимость</button>
+                    <button class="btn-secondary">Смотреть кейсы</button>
+                </div>
+                <div class="trust-badges">
+                    <span>✓ Интеграция 1С</span>
+                    <span>✓ 14 дней запуск</span>
+                    <span>✓ Техподдержка 24/7</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages -->
+    <section class="advantages">
+        <h2 class="section-title">Почему выбирают нас</h2>
+        <div class="advantages-grid">
+            <div class="card">
+                <div class="card-icon"></div>
+                <h3>Интеграция 1С</h3>
+                <p>Полная синхронизация данных с 1С Предприятие, Битрикс и другими системами</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"></div>
+                <h3>Аренда от 15500₽</h3>
+                <p>Готовые решения под ключ или аренда B2B портала с минимальными вложениями</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"></div>
+                <h3>Быстрый запуск</h3>
+                <p>Запуск портала за 14 дней с полной настройкой и обучением команды</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <h2 class="section-title">Наши услуги</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Создание B2B портала</h3>
+                <p>Индивидуальная разработка под ваш бизнес</p>
+                <a href="#" class="service-link">Подробнее →</a>
+            </div>
+            <div class="service-card">
+                <h3>Аренда кабинета</h3>
+                <p>От 15500₽/месяц, готовое решение</p>
+                <a href="#" class="service-link">Подробнее →</a>
+            </div>
+            <div class="service-card">
+                <h3>Модули для B2B</h3>
+                <p>Контрагенты, скидки, бонусы, прайс-листы</p>
+                <a href="#" class="service-link">Подробнее →</a>
+            </div>
+            <div class="service-card">
+                <h3>Интеграции</h3>
+                <p>1С, Битрикс, ERP, CRM системы</p>
+                <a href="#" class="service-link">Подробнее →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="videos">
+        <h2 class="section-title">Видео материалы</h2>
+        <p style="color: #4A5568; margin-bottom: 20px;">Узнайте больше о B2B порталах из наших видео</p>
+        <a href="#" style="color: #667EEA; text-decoration: none;">Все видео →</a>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-thumbnail">▶</div>
+                <div class="video-info">
+                    <h3>Работа с прайс-листами</h3>
+                    <div class="video-duration">12:34</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumbnail">▶</div>
+                <div class="video-info">
+                    <h3>Интеграция с 1С</h3>
+                    <div class="video-duration">15:20</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumbnail">▶</div>
+                <div class="video-info">
+                    <h3>Функционал менеджера</h3>
+                    <div class="video-duration">10:45</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Preview -->
+    <section class="content-preview">
+        <h2 class="section-title">Полезные материалы</h2>
+        <p style="color: #4A5568; margin-bottom: 20px;">Статьи, глоссарий и инструкции по B2B порталам</p>
+        <a href="#" style="color: #667EEA; text-decoration: none;">Весь контент →</a>
+        <div class="articles-grid">
+            <div class="article-card">
+                <div class="article-image"></div>
+                <div class="article-content">
+                    <span class="article-tag">Интеграция</span>
+                    <h3>Модуль B2B-KTR: выгрузка контрагентов</h3>
+                    <div class="article-meta">Александр • 23.04.2026</div>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-image"></div>
+                <div class="article-content">
+                    <span class="article-tag">Аренда</span>
+                    <h3>Аренда b2b-портала или Интернет-магазина</h3>
+                    <div class="article-meta">23.04.2026</div>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-image"></div>
+                <div class="article-content">
+                    <span class="article-tag">Техническое</span>
+                    <h3>Техническая реализация b2b портала</h3>
+                    <div class="article-meta">14.05.2026</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="calculator">
+        <h2>Рассчитайте стоимость вашего B2B портала</h2>
+        <form class="calc-form">
+            <div class="calc-field">
+                <select>
+                    <option>Тип проекта</option>
+                    <option>Создание под ключ</option>
+                    <option>Аренда</option>
+                </select>
+            </div>
+            <div class="calc-field">
+                <select>
+                    <option>Аренда / Покупка</option>
+                    <option>Аренда</option>
+                    <option>Покупка</option>
+                </select>
+            </div>
+            <div class="calc-field">
+                <select>
+                    <option>Масштаб</option>
+                    <option>Малый</option>
+                    <option>Средний</option>
+                    <option>Крупный</option>
+                </select>
+            </div>
+            <button type="submit" class="calc-btn">Рассчитать</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4>АЛЬФА</h4>
+                <a href="#">О компании</a>
+                <a href="#">Карьера</a>
+                <a href="#">Клиенты</a>
+            </div>
+            <div class="footer-column">
+                <h4>Услуги</h4>
+                <a href="#">Создание портала</a>
+                <a href="#">Аренда</a>
+                <a href="#">Модули</a>
+            </div>
+            <div class="footer-column">
+                <h4>Контент</h4>
+                <a href="#">Статьи</a>
+                <a href="#">Глоссарий</a>
+                <a href="#">Видео</a>
+            </div>
+            <div class="footer-column">
+                <h4>Контакты</h4>
+                <a href="#">+7 (812) 467-34-77</a>
+                <a href="#">info@s-alpha.ru</a>
+            </div>
+            <div class="footer-column">
+                <h4>Соцсети</h4>
+                <a href="#">ВКонтакте</a>
+                <a href="#">Telegram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 ООО "АЛЬФА". Все права защищены.
+        </div>
+    </footer>
+</body>
+</html>

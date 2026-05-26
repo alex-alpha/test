@@ -1,0 +1,20 @@
+# IDE
+.idea/
+.vscode/
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+package-lock.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build
+dist/
+build/

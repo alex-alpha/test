@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АЛЬФА - B2B порталы под ключ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #E63946;
+            --primary-dark: #C1121F;
+            --secondary-red: #FF6B6B;
+            --accent-orange: #F77F00;
+            --dark: #1D3557;
+            --gray-light: #F1FAEE;
+            --gray: #A8DADC;
+            --text-dark: #2B2D42;
+            --text-gray: #6C757D;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 30px rgba(230, 57, 70, 0.1);
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary-red);
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
+        .nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-red);
+            transition: width 0.3s;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .phone {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-right: 24px;
+        }
+
+        .btn-cabinet {
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        .btn-cabinet:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 90px;
+            min-height: 750px;
+            background: linear-gradient(135deg, #FFF5F5 0%, #FFF 50%, #FFF0F0 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(230, 57, 70, 0.1);
+            border-radius: 50px;
+            color: var(--primary-red);
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 32px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--primary-red);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-top: 4px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            padding: 18px 36px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(230, 57, 70, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(230, 57, 70, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 18px 36px;
+            background: transparent;
+            color: var(--dark);
+            border: 2px solid var(--dark);
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-float-card {
+            position: absolute;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-float-card.left {
+            bottom: 60px;
+            left: -40px;
+        }
+
+        .hero-float-card.right {
+            top: 60px;
+            right: -40px;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a2a4a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.03)"/></svg>');
+            background-size: 50px 50px;
+        }
+
+        .calc-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .calc-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .calc-header h2 {
+            font-size: 36px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .calc-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+        }
+
+        .calc-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .calc-tab {
+            padding: 14px 32px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .calc-tab.active {
+            background: var(--primary-red);
+            box-shadow: 0 4px 20px rgba(230, 57, 70, 0.4);
+        }
+
+        .calc-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .calc-panel {
+            display: none;
+        }
+
+        .calc-panel.active {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+        }
+
+        .calc-fields {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .calc-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .calc-field.full {
+            grid-column: span 2;
+        }
+
+        .calc-field label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .calc-field select,
+        .calc-field input {
+            padding: 14px 20px;
+            border: 2px solid #E9ECEF;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .calc-field select:focus,
+        .calc-field input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .calc-result {
+            background: linear-gradient(135deg, #FFF5F5 0%, #FFF 100%);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .calc-result h3 {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 16px;
+        }
+
+        .calc-result .price {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--primary-red);
+            margin-bottom: 24px;
+        }
+
+        .calc-result .period {
+            font-size: 16px;
+            color: var(--text-gray);
+            margin-bottom: 24px;
+        }
+
+        /* Benefits */
+        .benefits {
+            padding: 100px 40px;
+            background: white;
+        }
+
+        .benefits-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 40px;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-gray);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+            border: 1px solid #F1F3F5;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), var(--secondary-red));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .benefit-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .benefit-card:hover {
+            box-shadow: 0 20px 60px rgba(230, 57, 70, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #FFF5F5 0%, #FFE5E5 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 24px;
+        }
+
+        .benefit-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .benefit-card p {
+            font-size: 15px;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Services */
+        .services {
+            padding: 100px 40px;
+            background: #F8F9FA;
+        }
+
+        .services-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '→';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: var(--primary-red);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 15px 50px rgba(230, 57, 70, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 16px;
+        }
+
+        .service-price {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary-red);
+        }
+
+        .service-price small {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-gray);
+        }
+
+        /* Happy People Section */
+        .happy-people {
+            padding: 100px 40px;
+            background: white;
+        }
+
+        .happy-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .happy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .happy-card {
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .happy-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .happy-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 30px;
+            color: white;
+        }
+
+        .happy-overlay h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .happy-overlay p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Video Section */
+        .videos {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #FFF5F5 0%, #FFF 100%);
+        }
+
+        .videos-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(230, 57, 70, 0.2);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .video-play {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary-red);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .video-card:hover .video-play {
+            transform: scale(1.1);
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .video-info {
+            padding: 24px;
+        }
+
+        .video-info h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .video-meta {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        /* Articles/Blog Section */
+        .articles {
+            padding: 100px 40px;
+            background: white;
+        }
+
+        .articles-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .articles-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .articles-filters {
+            display: flex;
+            gap: 12px;
+        }
+
+        .articles-filter {
+            padding: 10px 20px;
+            border: 2px solid #E9ECEF;
+            border-radius: 50px;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .articles-filter.active,
+        .articles-filter:hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+            background: #FFF5F5;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #F1F3F5;
+            transition: all 0.4s;
+        }
+
+        .article-card:hover {
+            box-shadow: 0 15px 50px rgba(230, 57, 70, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 24px;
+        }
+
+        .article-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .article-tag {
+            padding: 4px 12px;
+            background: #FFF5F5;
+            color: var(--primary-red);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .article-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .article-author-avatar {
+            width: 24px;
+            height: 24px;
+            background: var(--primary-red);
+            border-radius: 50%;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: 40px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-white {
+            padding: 18px 40px;
+            background: white;
+            color: var(--primary-red);
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 80px 40px 40px;
+            background: var(--dark);
+            color: white;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-column a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animated elements */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-float-card {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">АЛЬФА<span>.B2B</span></div>
+            <nav class="nav">
+                <a href="#services">Услуги</a>
+                <a href="#calculator">Калькулятор</a>
+                <a href="#articles">Контент</a>
+                <a href="#videos">Видео</a>
+                <a href="#contact">Контакты</a>
+            </nav>
+            <div class="phone">+7 (812) 467-34-77</div>
+            <button class="btn-cabinet">Личный кабинет</button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div>
+                <div class="hero-badge">
+                    <span>🚀</span> Запуск за 14 дней
+                </div>
+                <h1>B2B порталы<br>под ключ с интеграцией 1С</h1>
+                <p>Создаём современные B2B порталы для автоматизации бизнеса. Аренда от 15 500 ₽/мес или разработка под ключ с полной интеграцией.</p>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Проектов</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">14</div>
+                        <div class="stat-label">Лет опыта</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Поддержка</div>
+                    </div>
+                </div>
+
+                <div class="hero-buttons">
+                    <button class="btn-primary">Рассчитать стоимость</button>
+                    <button class="btn-secondary">Смотреть кейсы</button>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop" alt="Business team">
+                <div class="hero-float-card left">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #E63946, #FF6B6B); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">✓</div>
+                        <div>
+                            <div style="font-weight: 700; font-size: 14px;">Интеграция 1С</div>
+                            <div style="font-size: 12px; color: #6C757D;">За 3 дня</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-float-card right">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #F77F00, #FCBF49); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">⚡</div>
+                        <div>
+                            <div style="font-weight: 700; font-size: 14px;">Быстрый старт</div>
+                            <div style="font-size: 12px; color: #6C757D;">От 14 дней</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="calculator-section" id="calculator">
+        <div class="calc-content">
+            <div class="calc-header">
+                <h2>Рассчитайте стоимость B2B портала</h2>
+                <p>Выберите тип проекта и получите расчёт за 30 секунд</p>
+            </div>
+
+            <div class="calc-tabs">
+                <button class="calc-tab active" onclick="switchTab('rental')">Аренда</button>
+                <button class="calc-tab" onclick="switchTab('creation')">Создание под ключ</button>
+            </div>
+
+            <!-- Rental Calculator -->
+            <div class="calc-panel active" id="rental">
+                <div class="calc-fields">
+                    <div class="calc-field full">
+                        <label>Тип портала</label>
+                        <select>
+                            <option>B2B портал</option>
+                            <option>Интернет-магазин</option>
+                            <option>Клиентский кабинет</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Количество пользователей</label>
+                        <select>
+                            <option>до 100</option>
+                            <option>100-500</option>
+                            <option>500-1000</option>
+                            <option>1000+</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Интеграция с 1С</label>
+                        <select>
+                            <option>Не нужна</option>
+                            <option>Обмен товарами</option>
+                            <option>Полная интеграция</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="calc-result">
+                    <h3>Стоимость аренды</h3>
+                    <div class="price">15 500 ₽</div>
+                    <div class="period">в месяц</div>
+                    <button class="btn-primary" style="width: 100%;">Заказать</button>
+                </div>
+            </div>
+
+            <!-- Creation Calculator -->
+            <div class="calc-panel" id="creation">
+                <div class="calc-fields">
+                    <div class="calc-field full">
+                        <label>Тип проекта</label>
+                        <select>
+                            <option>MVP (минимальная версия)</option>
+                            <option>Стандартный портал</option>
+                            <option>Под ключ с гарантией</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Интеграция с 1С</label>
+                        <select>
+                            <option>Не нужна</option>
+                            <option>Базовая (товары, цены)</option>
+                            <option>Расширенная (+ контрагенты)</option>
+                            <option>Полная (все модули)</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Дополнительные модули</label>
+                        <select>
+                            <option>Без модулей</option>
+                            <option>Контрагенты + Скидки</option>
+                            <option>Бонусная система</option>
+                            <option>Все модули</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Сроки запуска</label>
+                        <select>
+                            <option>Срочно (14 дней)</option>
+                            <option>Стандарт (30 дней)</option>
+                            <option>Комфортный (60 дней)</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Дизайн</label>
+                        <select>
+                            <option>Шаблонный</option>
+                            <option>Индивидуальный</option>
+                            <option>Премиум</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="calc-result">
+                    <h3>Стоимость разработки</h3>
+                    <div class="price">от 250 000 ₽</div>
+                    <div class="period">единоразово</div>
+                    <button class="btn-primary" style="width: 100%;">Обсудить проект</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits" id="services">
+        <div class="benefits-content">
+            <div class="section-header">
+                <h2>Почему выбирают нас</h2>
+                <p>14 лет опыта в разработке B2B порталов и интеграций</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔄</div>
+                    <h3>Интеграция с 1С</h3>
+                    <p>Полная синхронизация данных с 1С Предприятие, Битрикс и другими CRM системами. Обмен товарами, ценами, контрагентами.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Аренда от 15 500 ₽</h3>
+                    <p>Готовые B2B решения под ключ или аренда портала с минимальными вложениями. Быстрый старт за 14 дней.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Быстрый запуск</h3>
+                    <p>Запуск портала за 14 дней с полной настройкой, обучением команды и технической поддержкой 24/7.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Модульная система</h3>
+                    <p>Контрагенты, скидки, бонусы, прайс-листы, точки отгрузки — подключайте только нужное.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛠️</div>
+                    <h3>Техническая поддержка</h3>
+                    <p>Круглосуточная поддержка, обновления, мониторинг и оперативное решение любых вопросов.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>SEO-оптимизация</h3>
+                    <p>Встроенный блог, глоссарий, теги — весь контент легко индексируется и привлекает клиентов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <div class="services-content">
+            <div class="section-header">
+                <h2>Наши услуги</h2>
+                <p>Полный спектр услуг для B2B автоматизации</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Создание B2B портала</h3>
+                    <p>Индивидуальная разработка под ваш бизнес</p>
+                    <div class="service-price">от 250 000 ₽</div>
+                </div>
+                <div class="service-card">
+                    <h3>Аренда кабинета</h3>
+                    <p>Готовое решение без вложений</p>
+                    <div class="service-price">15 500 <small>₽/мес</small></div>
+                </div>
+                <div class="service-card">
+                    <h3>Модули для B2B</h3>
+                    <p>Контрагенты, скидки, бонусы</p>
+                    <div class="service-price">от 50 000 ₽</div>
+                </div>
+                <div class="service-card">
+                    <h3>Интеграции</h3>
+                    <p>1С, Битрикс, ERP, CRM</p>
+                    <div class="service-price">от 80 000 ₽</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Happy People -->
+    <section class="happy-people">
+        <div class="happy-content">
+            <div class="section-header">
+                <h2>Наши клиенты достигают успеха</h2>
+                <p>Более 500 компаний уже автоматизировали свой B2B бизнес с нами</p>
+            </div>
+
+            <div class="happy-grid">
+                <div class="happy-card">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=350&fit=crop" alt="Successful business">
+                    <div class="happy-overlay">
+                        <h3>Мария Иванова</h3>
+                        <p>Директор по развитию, ТехноПром</p>
+                        <p style="margin-top: 8px; font-size: 13px;">"Запустили B2B портал за 2 недели. Продажи выросли на 40%!"</p>
+                    </div>
+                </div>
+                <div class="happy-card">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=350&fit=crop" alt="Business meeting">
+                    <div class="happy-overlay">
+                        <h3>Алексей Петров</h3>
+                        <p>IT-директор, СтройМаркет</p>
+                        <p style="margin-top: 8px; font-size: 13px;">"Интеграция с 1С прошла идеально. Данные синхронизируются за 5 минут."</p>
+                    </div>
+                </div>
+                <div class="happy-card">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=350&fit=crop" alt="Team success">
+                    <div class="happy-overlay">
+                        <h3>Елена Сидорова</h3>
+                        <p>Коммерческий директор, ОптТорг</p>
+                        <p style="margin-top: 8px; font-size: 13px;">"Аренда портала — идеальное решение. Начали получать заказы онлайн сразу."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos -->
+    <section class="videos" id="videos">
+        <div class="videos-content">
+            <div class="section-header">
+                <h2>Видео материалы</h2>
+                <p>Узнайте больше о B2B порталах из наших видео</p>
+            </div>
+
+            <div class="videos-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="video-play">▶</div>
+                        <div class="video-duration">12:34</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Работа с прайс-листами на B2B портале</h3>
+                        <div class="video-meta">2 450 просмотров • 3 дня назад</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="video-play">▶</div>
+                        <div class="video-duration">15:20</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Интеграция с 1С: пошаговая инструкция</h3>
+                        <div class="video-meta">3 120 просмотров • 1 неделя назад</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="video-play">▶</div>
+                        <div class="video-duration">10:45</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Функционал менеджера B2B портала</h3>
+                        <div class="video-meta">1 890 просмотров • 2 недели назад</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles -->
+    <section class="articles" id="articles">
+        <div class="articles-content">
+            <div class="articles-header">
+                <div>
+                    <h2>Полезные материалы</h2>
+                    <p style="color: var(--text-gray); margin-top: 8px;">Статьи, глоссарий и инструкции по B2B порталам</p>
+                </div>
+                <div class="articles-filters">
+                    <button class="articles-filter active">Все</button>
+                    <button class="articles-filter">Интеграции</button>
+                    <button class="articles-filter">Аренда</button>
+                    <button class="articles-filter">Техническое</button>
+                </div>
+            </div>
+
+            <div class="articles-grid">
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=200&fit=crop" class="article-image" alt="Article">
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="article-tag">Интеграция</span>
+                            <span class="article-tag">1С</span>
+                        </div>
+                        <h3>Модуль B2B-KTR: выгрузка контрагентов, менеджеров и условий из 1С в Битрикс</h3>
+                        <div class="article-meta">
+                            <div class="article-author">
+                                <div class="article-author-avatar"></div>
+                                <span>Александр</span>
+                            </div>
+                            <span>•</span>
+                            <span>23.04.2026</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=600&h=200&fit=crop" class="article-image" alt="Article">
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="article-tag">Аренда</span>
+                        </div>
+                        <h3>Аренда b2b-портала или Интернет-магазина: что выбрать?</h3>
+                        <div class="article-meta">
+                            <div class="article-author">
+                                <div class="article-author-avatar"></div>
+                                <span>Мария</span>
+                            </div>
+                            <span>•</span>
+                            <span>23.04.2026</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=200&fit=crop" class="article-image" alt="Article">
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="article-tag">Техническое</span>
+                        </div>
+                        <h3>Техническая реализация b2b портала: собственное API и контроль обменов</h3>
+                        <div class="article-meta">
+                            <div class="article-author">
+                                <div class="article-author-avatar"></div>
+                                <span>Александр</span>
+                            </div>
+                            <span>•</span>
+                            <span>14.05.2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <button class="btn-secondary">Все статьи →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact">
+        <div class="cta-content">
+            <h2>Готовы обсудить ваш проект?</h2>
+            <p>Оставьте заявку и получите бесплатную консультацию по автоматизации вашего B2B бизнеса</p>
+            <div class="cta-buttons">
+                <button class="btn-white">Заказать звонок</button>
+                <button class="btn-white" style="background: transparent; border: 2px solid white;">+7 (812) 467-34-77</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">АЛЬФА<span>.B2B</span></div>
+                <p>Создаём современные B2B порталы с интеграцией 1С. Аренда и разработка под ключ с 2010 года.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Услуги</h4>
+                <a href="#">Создание портала</a>
+                <a href="#">Аренда</a>
+                <a href="#">Модули</a>
+                <a href="#">Интеграции</a>
+            </div>
+            <div class="footer-column">
+                <h4>Контент</h4>
+                <a href="#">Статьи</a>
+                <a href="#">Глоссарий</a>
+                <a href="#">Видео</a>
+                <a href="#">Кейсы</a>
+            </div>
+            <div class="footer-column">
+                <h4>Компания</h4>
+                <a href="#">О нас</a>
+                <a href="#">Карьера</a>
+                <a href="#">Партнёрам</a>
+                <a href="#">Блог</a>
+            </div>
+            <div class="footer-column">
+                <h4>Контакты</h4>
+                <a href="#">+7 (812) 467-34-77</a>
+                <a href="#">info@s-alpha.ru</a>
+                <a href="#">ВКонтакте</a>
+                <a href="#">Telegram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 ООО "АЛЬФА". Все права защищены.</span>
+            <span>Политика конфиденциальности</span>
+        </div>
+    </footer>
+
+    <script>
+        function switchTab(tab) {
+            // Remove active from all tabs
+            document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+
+            // Add active to clicked tab
+            event.target.classList.add('active');
+            document.getElementById(tab).classList.add('active');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Article filters
+        document.querySelectorAll('.articles-filter').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.articles-filter').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

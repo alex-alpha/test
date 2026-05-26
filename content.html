@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S-ALPHA - Статьи и полезная информация | B2B порталы</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #E63946;
+            --primary-dark: #C1121F;
+            --secondary-red: #FF6B6B;
+            --accent-orange: #F77F00;
+            --dark: #1D3557;
+            --gray-light: #F8F9FA;
+            --text-dark: #1A1A1A;
+            --text-gray: #6B7280;
+            --border-color: #E5E7EB;
+            --max-width: 1400px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ==================== HEADER ==================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 110px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 60px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--primary-red);
+            letter-spacing: -1px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
+        .nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-item > a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 15px;
+            font-weight: 700;
+            padding: 14px 24px;
+            display: block;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .nav-item > a:hover {
+            background: var(--gray-light);
+        }
+
+        /* Mega Menu */
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 900px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            padding: 40px;
+        }
+
+        .nav-item:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            top: calc(100% + 10px);
+        }
+
+        .mega-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .mega-menu-section h4 {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .mega-menu-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .mega-menu-item:hover {
+            background: var(--gray-light);
+        }
+
+        .mega-menu-item-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #FFF5F5, #FFE5E5);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-cabinet {
+            padding: 14px 32px;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-cabinet:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+        }
+
+        /* ==================== HERO WITH PARALLAX ==================== */
+        .hero-portal {
+            margin-top: 110px;
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-portal-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&h=900&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-portal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(29, 53, 87, 0.92) 0%, rgba(230, 57, 70, 0.88) 100%);
+        }
+
+        .hero-portal-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 100px 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-portal-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .hero-portal-content p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+
+        .hero-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .hero-breadcrumb a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .hero-breadcrumb span {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-breadcrumb .current {
+            color: white;
+        }
+
+        /* ==================== CAROUSEL BANNERS ==================== */
+        .banners-carousel {
+            padding: 60px 60px;
+            background: white;
+        }
+
+        .banners-carousel .swiper {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .banner-slide {
+            background: linear-gradient(135deg, var(--dark), #1a3a52);
+            border-radius: 30px;
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            min-height: 350px;
+        }
+
+        .banner-slide::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.3), transparent);
+            border-radius: 50%;
+        }
+
+        .banner-slide-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .banner-slide-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .banner-slide-content p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .banner-slide-image {
+            width: 400px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner-pagination {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .banner-pagination .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: var(--border-color);
+            opacity: 1;
+        }
+
+        .banner-pagination .swiper-pagination-bullet-active {
+            width: 40px;
+            border-radius: 6px;
+            background: var(--primary-red);
+        }
+
+        /* ==================== MAIN CONTENT GRID ==================== */
+        .content-portal {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 60px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 60px;
+        }
+
+        .content-main {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .content-sidebar {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        /* ==================== CATEGORY SECTIONS ==================== */
+        .category-section {
+            margin-bottom: 60px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--border-color);
+        }
+
+        .category-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .category-header a {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .category-header a:hover {
+            text-decoration: underline;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category-card-content {
+            padding: 30px;
+        }
+
+        .category-card-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .category-card-excerpt {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .category-card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .category-card-date {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        .category-card-link {
+            color: var(--primary-red);
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        /* ==================== SUBCATEGORIES ==================== */
+        .subcategories-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .subcategory-item {
+            background: var(--gray-light);
+            padding: 24px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .subcategory-item:hover {
+            background: white;
+            border-color: var(--primary-red);
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .subcategory-item h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subcategory-item span {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        /* ==================== TAGS CLOUD ==================== */
+        .tags-cloud-section {
+            background: var(--gray-light);
+            padding: 50px 60px;
+            margin: 60px 0;
+        }
+
+        .tags-cloud-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tags-cloud-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .tag-item {
+            padding: 12px 24px;
+            background: white;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .tag-item:hover {
+            border-color: var(--primary-red);
+            background: var(--primary-red);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .tag-item.large {
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        /* ==================== SIDEBAR ==================== */
+        .sidebar-widget {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .sidebar-widget-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 2px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            text-decoration: none;
+            color: var(--text-dark);
+            border-radius: 12px;
+            transition: all 0.2s;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .sidebar-menu a:hover {
+            background: var(--gray-light);
+            color: var(--primary-red);
+        }
+
+        .sidebar-menu a .arrow {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .sidebar-articles {
+            list-style: none;
+        }
+
+        .sidebar-articles li {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-articles li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .sidebar-articles a {
+            display: flex;
+            gap: 16px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .sidebar-article-thumb {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-article-info h5 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .sidebar-article-info span {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* ==================== PARTNERS SECTION ==================== */
+        .partners-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 100px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partners-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.2), transparent);
+            border-radius: 50%;
+        }
+
+        .partners-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .partners-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .partners-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .partners-header p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .partner-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s;
+        }
+
+        .partner-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            border-color: var(--primary-red);
+        }
+
+        .partner-card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-dark));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+        }
+
+        .partner-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .partner-card p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        .partners-auth {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .partners-auth h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .partners-auth p {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .auth-tab.active {
+            border-color: var(--primary-red);
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 15px;
+            margin-bottom: 16px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .auth-form input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .auth-form button {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .auth-form button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== DEVELOPERS BLOCK ==================== */
+        .developers-block {
+            background: white;
+            padding: 100px 60px;
+        }
+
+        .developers-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .developers-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .developers-header p {
+            font-size: 18px;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .developers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .developer-card {
+            background: var(--gray-light);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .developer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .developer-photo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .developer-info {
+            padding: 24px;
+        }
+
+        .developer-name {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .developer-role {
+            font-size: 13px;
+            color: var(--primary-red);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .developer-bio {
+            font-size: 13px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .developer-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .developer-links a {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .developer-links a:hover {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .developers-cta {
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-dark));
+            border-radius: 30px;
+        }
+
+        .developers-cta h3 {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .developers-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+
+        .btn-white {
+            display: inline-block;
+            padding: 18px 48px;
+            background: white;
+            color: var(--primary-red);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ==================== RELATED BANNERS ==================== */
+        .related-banners {
+            padding: 60px;
+            background: var(--gray-light);
+        }
+
+        .related-banners-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .related-banner {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .related-banner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .related-banner-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .related-banner-content {
+            padding: 24px;
+        }
+
+        .related-banner-tag {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary-red);
+            margin-bottom: 12px;
+        }
+
+        .related-banner h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .related-banner p {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        /* ==================== CONTACT FORM ==================== */
+        .contact-section {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a3a52 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.3), transparent);
+            border-radius: 50%;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .contact-header p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 18px 24px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form .full {
+            grid-column: span 2;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 20px;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 50px rgba(230, 57, 70, 0.4);
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            padding: 80px 60px 40px;
+            background: var(--dark);
+            color: white;
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo {
+            font-size: 32px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .footer-column a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-bottom {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1200px) {
+            .content-portal {
+                grid-template-columns: 1fr;
+            }
+
+            .content-sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subcategories-list {
+                grid-template-columns: 1fr;
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .developers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="prototype-v7.html" class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="8" fill="#E63946"/>
+                    <path d="M12 10h16v4H12z" fill="white"/>
+                    <path d="M10 18h20v4H10z" fill="white"/>
+                    <path d="M12 26h16v4H12z" fill="white"/>
+                </svg>
+                S-ALPHA<span>.B2B</span>
+            </a>
+            <nav class="nav">
+                <div class="nav-item">
+                    <a href="#services">Услуги</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-grid">
+                            <div class="mega-menu-section">
+                                <h4>Основные услуги</h4>
+                                <a href="#b2b-cabinet" class="mega-menu-item">
+                                    <div class="mega-menu-item-icon">🚀</div>
+                                    <div class="mega-menu-item-content">
+                                        <h5>B2B портал под ключ</h5>
+                                        <p>Индивидуальная разработка</p>
+                                    </div>
+                                </a>
+                                <a href="#rental" class="mega-menu-item">
+                                    <div class="mega-menu-item-icon">💰</div>
+                                    <div class="mega-menu-item-content">
+                                        <h5>Аренда кабинета</h5>
+                                        <p>От 15 500 ₽/мес</p>
+                                    </div>
+                                </a>
+                                <a href="#modules" class="mega-menu-item">
+                                    <div class="mega-menu-item-icon">🔧</div>
+                                    <div class="mega-menu-item-content">
+                                        <h5>Модули для B2B</h5>
+                                        <p>Контрагенты, скидки, бонусы</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>Интеграции</h4>
+                                <a href="#integration-1c" class="mega-menu-item">
+                                    <div class="mega-menu-item-icon">📊</div>
+                                    <div class="mega-menu-item-content">
+                                        <h5>Интеграция 1С</h5>
+                                        <p>Полная синхронизация</p>
+                                    </div>
+                                </a>
+                                <a href="#integration-bitrix" class="mega-menu-item">
+                                    <div class="mega-menu-item-icon">🔄</div>
+                                    <div class="mega-menu-item-content">
+                                        <h5>Битрикс-24</h5>
+                                        <p>CRM и автоматизация</p>
+                                    </div>
+                                </a>
+                                <a href="#integration-marketplaces" class="mega-menu-item">
+                                    <div class="mega-menu-item-icon">🔗</div>
+                                    <div class="mega-menu-item-content">
+                                        <h5>Маркетплейсы</h5>
+                                        <p>Ozon, Wildberries, Яндекс</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>Партнёрам</h4>
+                                <a href="#partners" class="mega-menu-item">
+                                    <div class="mega-menu-item-icon">🤝</div>
+                                    <div class="mega-menu-item-content">
+                                        <h5>Партнёрская программа</h5>
+                                        <p>До 30% комиссия</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="mega-menu-item">
+                                    <div class="mega-menu-item-icon">🔐</div>
+                                    <div class="mega-menu-item-content">
+                                        <h5>Личный кабинет партнёра</h5>
+                                        <p>Вход для партнёров</p>
+                                    </div>
+                                </a>
+                                <a href="#developers" class="mega-menu-item">
+                                    <div class="mega-menu-item-icon">👨‍💻</div>
+                                    <div class="mega-menu-item-content">
+                                        <h5>Разработчикам</h5>
+                                        <p>API и документация</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="#blog">Контент</a>
+                    <div class="mega-menu" style="min-width: 400px;">
+                        <a href="#blog" class="mega-menu-item">
+                            <div class="mega-menu-item-icon">📝</div>
+                            <div class="mega-menu-item-content">
+                                <h5>Блог разработчиков</h5>
+                                <p>Статьи и материалы</p>
+                            </div>
+                        </a>
+                        <a href="#articles" class="mega-menu-item">
+                            <div class="mega-menu-item-icon">📚</div>
+                            <div class="mega-menu-item-content">
+                                <h5>Статьи по B2B</h5>
+                                <p>Инструкции и гайды</p>
+                            </div>
+                        </a>
+                        <a href="#cases" class="mega-menu-item">
+                            <div class="mega-menu-item-icon">🏆</div>
+                            <div class="mega-menu-item-content">
+                                <h5>Кейсы</h5>
+                                <p>Наши проекты</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="#partners">Партнёрам</a>
+                    <div class="mega-menu" style="min-width: 400px;">
+                        <a href="#partners" class="mega-menu-item">
+                            <div class="mega-menu-item-icon">🤝</div>
+                            <div class="mega-menu-item-content">
+                                <h5>Партнёрская программа</h5>
+                                <p>Присоединяйтесь к нам</p>
+                            </div>
+                        </a>
+                        <a href="#" class="mega-menu-item">
+                            <div class="mega-menu-item-icon">🔐</div>
+                            <div class="mega-menu-item-content">
+                                <h5>Авторизация партнёра</h5>
+                                <p>Войдите в личный кабинет</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="#contact" style="padding: 14px 24px;">Контакты</a>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn-cabinet" onclick="openPartnerAuth()">Личный кабинет</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Portal with Parallax -->
+    <section class="hero-portal">
+        <div class="hero-portal-bg"></div>
+        <div class="hero-portal-overlay"></div>
+        <div class="hero-portal-content">
+            <div class="hero-breadcrumb">
+                <a href="prototype-v7.html">Главная</a>
+                <span>→</span>
+                <span class="current">Статьи и полезная информация</span>
+            </div>
+            <h1>Статьи и полезная информация</h1>
+            <p>Актуальные материалы по B2B порталам, интеграциям, модулям и автоматизации бизнеса. Экспертные статьи, кейсы и техническая документация от команды S-ALPHA.</p>
+        </div>
+    </section>
+
+    <!-- Banners Carousel -->
+    <section class="banners-carousel">
+        <div class="swiper bannersSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="banner-slide">
+                        <div class="banner-slide-content">
+                            <h3>B2B портал под ключ</h3>
+                            <p>Создаём современные B2B порталы с полной интеграцией 1С и CRM систем. Запуск от 14 дней.</p>
+                            <a href="#b2b-cabinet" class="btn-white">Подробнее →</a>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=280&fit=crop" class="banner-slide-image" alt="B2B портал">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="banner-slide">
+                        <div class="banner-slide-content">
+                            <h3>Интеграция 1С с сайтом</h3>
+                            <p>Полная синхронизация товаров, цен, контрагентов и заказов между 1С Предприятие и вашим порталом.</p>
+                            <a href="#integration-1c" class="btn-white">Подробнее →</a>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=280&fit=crop" class="banner-slide-image" alt="Интеграция 1С">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="banner-slide">
+                        <div class="banner-slide-content">
+                            <h3>Аренда B2B портала</h3>
+                            <p>Готовое решение без первоначальных вложений. Быстрый старт с полной настройкой.</p>
+                            <a href="#rental" class="btn-white">Подробнее →</a>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=280&fit=crop" class="banner-slide-image" alt="Аренда">
+                    </div>
+                </div>
+            </div>
+            <div class="banner-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Main Content Portal -->
+    <div class="content-portal" id="articles">
+        <div class="content-main">
+            <!-- B2B Client Cabinet Section -->
+            <section class="category-section" id="b2b-cabinet">
+                <div class="category-header">
+                    <h2>B2B клиентский кабинет</h2>
+                    <a href="#">Все статьи →</a>
+                </div>
+                <div class="category-grid">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=300&fit=crop" class="category-card-image" alt="B2B портал">
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">B2B-портал под ключ: как создать личный кабинет</h3>
+                            <p class="category-card-excerpt">Полное руководство по созданию B2B портала с личным кабинетом для ваших клиентов и партнёров. Разбираем все этапы разработки.</p>
+                            <div class="category-card-meta">
+                                <span class="category-card-date">15.05.2026</span>
+                                <span class="category-card-link">Читать →</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=300&fit=crop" class="category-card-image" alt="Модуль выгрузки">
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Модуль: Выгрузка контрагентов из 1С Предприятие</h3>
+                            <p class="category-card-excerpt">Автоматическая выгрузка контрагентов из 1С в Битрикс Управление сайтом. Подробный разбор модуля.</p>
+                            <div class="category-card-meta">
+                                <span class="category-card-date">10.05.2026</span>
+                                <span class="category-card-link">Читать →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="subcategories-list">
+                    <a href="#" class="subcategory-item">
+                        <h4>🏢 Клиентский портал</h4>
+                        <span>12 статей</span>
+                    </a>
+                    <a href="#" class="subcategory-item">
+                        <h4>📦 Выгрузка данных</h4>
+                        <span>8 статей</span>
+                    </a>
+                    <a href="#" class="subcategory-item">
+                        <h4>🔄 Обмен с 1С</h4>
+                        <span>15 статей</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Integration 1C-Bitrix Section -->
+            <section class="category-section" id="integration-bitrix">
+                <div class="category-header">
+                    <h2>Интеграция 1С-Битрикс</h2>
+                    <a href="#">Все статьи →</a>
+                </div>
+                <div class="category-grid">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=300&fit=crop" class="category-card-image" alt="Интеграция">
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Интеграция 1С и Битрикс24: полная синхронизация</h3>
+                            <p class="category-card-excerpt">Как настроить обмен данными между 1С Предприятие и Битрикс24. Синхронизация заказов, товаров и клиентов.</p>
+                            <div class="category-card-meta">
+                                <span class="category-card-date">08.05.2026</span>
+                                <span class="category-card-link">Читать →</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop" class="category-card-image" alt="Ускоренный обмен">
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Ускоренный обмен 1С-Битрикс по артикулам</h3>
+                            <p class="category-card-excerpt">Оптимизация обмена данными между 1С и Битрикс. Использование артикулов для быстрой синхронизации.</p>
+                            <div class="category-card-meta">
+                                <span class="category-card-date">05.05.2026</span>
+                                <span class="category-card-link">Читать →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Integration Marketplaces Section -->
+            <section class="category-section" id="integration-marketplaces">
+                <div class="category-header">
+                    <h2>Интеграция с Маркетплейсами</h2>
+                    <a href="#">Все статьи →</a>
+                </div>
+                <div class="category-grid">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=300&fit=crop" class="category-card-image" alt="Ozon">
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Интеграция OZON с 1С</h3>
+                            <p class="category-card-excerpt">Как собрать заказы для Ozon и интегрировать их с 1С Предприятие. Полное руководство по настройке.</p>
+                            <div class="category-card-meta">
+                                <span class="category-card-date">01.05.2026</span>
+                                <span class="category-card-link">Читать →</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=300&fit=crop" class="category-card-image" alt="Wildberries">
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Интеграция Wildberries с 1С</h3>
+                            <p class="category-card-excerpt">Настройка автоматического обмена заказами между Wildberries и 1С. Обработка запасов и цен.</p>
+                            <div class="category-card-meta">
+                                <span class="category-card-date">28.04.2026</span>
+                                <span class="category-card-link">Читать →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="subcategories-list">
+                    <a href="#" class="subcategory-item">
+                        <h4>📦 Ozon интеграция</h4>
+                        <span>10 статей</span>
+                    </a>
+                    <a href="#" class="subcategory-item">
+                        <h4>🛍️ Wildberries</h4>
+                        <span>8 статей</span>
+                    </a>
+                    <a href="#" class="subcategory-item">
+                        <h4>🛒 Яндекс.Маркет</h4>
+                        <span>6 статей</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Internet Shop Section -->
+            <section class="category-section">
+                <div class="category-header">
+                    <h2>Интернет магазин на Битрикс</h2>
+                    <a href="#">Все статьи →</a>
+                </div>
+                <div class="category-grid">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop" class="category-card-image" alt="Интернет магазин">
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Аренда магазина на Битрикс: тех. поддержка</h3>
+                            <p class="category-card-excerpt">Комплексная техническая поддержка интернет-магазина на Битрикс. Обновления, безопасность, оптимизация.</p>
+                            <div class="category-card-meta">
+                                <span class="category-card-date">20.04.2026</span>
+                                <span class="category-card-link">Читать →</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1557828923-700859c8b5c0?w=600&h=300&fit=crop" class="category-card-image" alt="Создание магазина">
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Создание интернет магазина на Битрикс</h3>
+                            <p class="category-card-excerpt">Главные ошибки при запуске и как их избежать. Полный гайд по созданию успешного интернет-магазина.</p>
+                            <div class="category-card-meta">
+                                <span class="category-card-date">15.04.2026</span>
+                                <span class="category-card-link">Читать →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="content-sidebar">
+            <div class="sidebar-widget">
+                <h3 class="sidebar-widget-title">📂 Разделы</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#b2b-cabinet">B2B клиентский кабинет <span class="arrow">→</span></a></li>
+                    <li><a href="#integration-1c">Интеграция 1С-Битрикс <span class="arrow">→</span></a></li>
+                    <li><a href="#integration-marketplaces">Интеграция с Маркетплейсами <span class="arrow">→</span></a></li>
+                    <li><a href="#">Интернет магазин на Битрикс <span class="arrow">→</span></a></li>
+                    <li><a href="#">1С в Облаке <span class="arrow">→</span></a></li>
+                    <li><a href="#">Аренда 1С <span class="arrow">→</span></a></li>
+                    <li><a href="#">Маркировка Честный Знак <span class="arrow">→</span></a></li>
+                    <li><a href="#">Сравнение УНФ или УТ <span class="arrow">→</span></a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3 class="sidebar-widget-title">🔥 Популярное</h3>
+                <ul class="sidebar-articles">
+                    <li>
+                        <a href="#">
+                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=100&h=80&fit=crop" class="sidebar-article-thumb" alt="">
+                            <div class="sidebar-article-info">
+                                <h5>B2B-портал под ключ</h5>
+                                <span>15.05.2026</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=80&fit=crop" class="sidebar-article-thumb" alt="">
+                            <div class="sidebar-article-info">
+                                <h5>Интеграция 1С с сайтом</h5>
+                                <span>10.05.2026</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=100&h=80&fit=crop" class="sidebar-article-thumb" alt="">
+                            <div class="sidebar-article-info">
+                                <h5>Интеграция OZON с 1С</h5>
+                                <span>01.05.2026</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3 class="sidebar-widget-title">📢 Акции</h3>
+                <div style="background: linear-gradient(135deg, #FFF5F5, #FFE5E5); padding: 24px; border-radius: 16px;">
+                    <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--primary-red);">Скидка 20% на первый месяц!</h4>
+                    <p style="font-size: 13px; color: var(--text-gray); margin-bottom: 16px;">Арендуйте B2B портал со скидкой при первом заказе.</p>
+                    <a href="#" class="btn-cabinet" style="display: block; text-align: center; padding: 12px;">Узнать больше</a>
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3 class="sidebar-widget-title">📞 Нужна консультация?</h3>
+                <form style="display: flex; flex-direction: column; gap: 12px;">
+                    <input type="text" placeholder="Ваше имя" style="padding: 14px; border: 2px solid var(--border-color); border-radius: 10px; font-size: 14px; font-family: inherit;">
+                    <input type="tel" placeholder="Телефон" style="padding: 14px; border: 2px solid var(--border-color); border-radius: 10px; font-size: 14px; font-family: inherit;">
+                    <button type="submit" class="btn-cabinet" style="padding: 14px; border: none;">Заказать звонок</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Tags Cloud -->
+    <section class="tags-cloud-section">
+        <div class="tags-cloud-header">
+            <h2>Популярные темы</h2>
+            <p>Быстрый доступ к материалам по ключевым темам</p>
+        </div>
+        <div class="tags-cloud">
+            <a href="#" class="tag-item large">#B2B портал</a>
+            <a href="#" class="tag-item">#Интеграция 1С</a>
+            <a href="#" class="tag-item large">#Битрикс</a>
+            <a href="#" class="tag-item">#Ozon</a>
+            <a href="#" class="tag-item">#Wildberries</a>
+            <a href="#" class="tag-item large">#Маркетплейсы</a>
+            <a href="#" class="tag-item">#Аренда 1С</a>
+            <a href="#" class="tag-item">#Клиентский кабинет</a>
+            <a href="#" class="tag-item large">#Модули</a>
+            <a href="#" class="tag-item">#Скидки</a>
+            <a href="#" class="tag-item">#Бонусы</a>
+            <a href="#" class="tag-item">#Честный знак</a>
+            <a href="#" class="tag-item large">#УНФ</a>
+            <a href="#" class="tag-item">#УТ</a>
+            <a href="#" class="tag-item">#Облачная 1С</a>
+        </div>
+    </section>
+
+    <!-- Related Banners -->
+    <section class="related-banners">
+        <div class="related-banners-grid">
+            <a href="#rental" class="related-banner">
+                <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400&h=200&fit=crop" class="related-banner-image" alt="Аренда">
+                <div class="related-banner-content">
+                    <div class="related-banner-tag">Услуга</div>
+                    <h4>Аренда B2B портала</h4>
+                    <p>От 15 500 ₽/мес. Быстрый старт за 14 дней.</p>
+                </div>
+            </a>
+            <a href="#modules" class="related-banner">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=200&fit=crop" class="related-banner-image" alt="Модули">
+                <div class="related-banner-content">
+                    <div class="related-banner-tag">Разработка</div>
+                    <h4>Модули для B2B</h4>
+                    <p>Контрагенты, скидки, бонусы, прайс-листы.</p>
+                </div>
+            </a>
+            <a href="#integration-1c" class="related-banner">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=200&fit=crop" class="related-banner-image" alt="Интеграция">
+                <div class="related-banner-content">
+                    <div class="related-banner-tag">Интеграция</div>
+                    <h4>Интеграция 1С</h4>
+                    <p>Полная синхронизация с вашим порталом.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Developers Block -->
+    <section class="developers-block" id="developers">
+        <div class="developers-header">
+            <h2>Команда разработчиков</h2>
+            <p>Познакомьтесь с экспертами, которые создают ваши B2B порталы. Опытные профессионалы с глубокими знаниями в области интеграций и автоматизации.</p>
+        </div>
+        <div class="developers-grid">
+            <div class="developer-card">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=200&fit=crop" class="developer-photo" alt="Александр">
+                <div class="developer-info">
+                    <div class="developer-name">Александр</div>
+                    <div class="developer-role">Backend Developer</div>
+                    <p class="developer-bio">Архитектура B2B порталов, интеграции с 1С и API. 10 лет опыта.</p>
+                    <div class="developer-links">
+                        <a href="#">GH</a>
+                        <a href="#">in</a>
+                        <a href="#">Блог</a>
+                    </div>
+                </div>
+            </div>
+            <div class="developer-card">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop" class="developer-photo" alt="Максим">
+                <div class="developer-info">
+                    <div class="developer-name">Максим</div>
+                    <div class="developer-role">Frontend Developer</div>
+                    <p class="developer-bio">Современные интерфейсы для B2B порталов. Vue.js, React.</p>
+                    <div class="developer-links">
+                        <a href="#">GH</a>
+                        <a href="#">Dr</a>
+                        <a href="#">Блог</a>
+                    </div>
+                </div>
+            </div>
+            <div class="developer-card">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=200&fit=crop" class="developer-photo" alt="Елена">
+                <div class="developer-info">
+                    <div class="developer-name">Елена</div>
+                    <div class="developer-role">Backend Developer</div>
+                    <p class="developer-bio">Интеграция 1С Предприятие с веб-системами. Модули обмена.</p>
+                    <div class="developer-links">
+                        <a href="#">GH</a>
+                        <a href="#">TG</a>
+                        <a href="#">Блог</a>
+                    </div>
+                </div>
+            </div>
+            <div class="developer-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=200&fit=crop" class="developer-photo" alt="Дмитрий">
+                <div class="developer-info">
+                    <div class="developer-name">Дмитрий</div>
+                    <div class="developer-role">DevOps Engineer</div>
+                    <p class="developer-bio">Инфраструктура, CI/CD, облачные решения. Безопасность.</p>
+                    <div class="developer-links">
+                        <a href="#">GH</a>
+                        <a href="#">in</a>
+                        <a href="#">Блог</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="developers-cta">
+            <h3>Нужен проект? Работа с нами!</h3>
+            <p>Обсудим вашу задачу и предложим оптимальное решение</p>
+            <a href="#contact" class="btn-white">Связаться с командой</a>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners-section" id="partners">
+        <div class="partners-content">
+            <div class="partners-header">
+                <h2>Партнёрская программа</h2>
+                <p>Станьте партнёром S-ALPHA и получайте доход до 30% с каждого проекта</p>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-card-icon">💰</div>
+                    <h4>До 30% комиссии</h4>
+                    <p>Щедрая система вознаграждений за приведённых клиентов</p>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-card-icon">🎯</div>
+                    <h4>Лиды для вас</h4>
+                    <p>Получайте заявки от клиентов в вашем регионе</p>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-card-icon">📊</div>
+                    <h4>Персональный кабинет</h4>
+                    <p>Управляйте заявками и отслеживайте выплаты</p>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-card-icon">🛠️</div>
+                    <h4>Техническая поддержка</h4>
+                    <p>Полная поддержка на всех этапах сотрудничества</p>
+                </div>
+            </div>
+            <div class="partners-auth">
+                <h3>Личный кабинет партнёра</h3>
+                <p>Войдите или зарегистрируйтесь для доступа к партнёрской программе</p>
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="switchAuthTab('login')">Вход</button>
+                    <button class="auth-tab" onclick="switchAuthTab('register')">Регистрация</button>
+                </div>
+                <form class="auth-form" id="loginForm">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Пароль" required>
+                    <button type="submit">Войти в кабинет</button>
+                </form>
+                <form class="auth-form" id="registerForm" style="display: none;">
+                    <input type="text" placeholder="Название компании" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="tel" placeholder="Телефон" required>
+                    <input type="password" placeholder="Пароль" required>
+                    <button type="submit">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-content">
+            <div class="contact-header">
+                <h2>Оставьте заявку</h2>
+                <p>Заполните форму и получите консультацию по вашему проекту в течение 30 минут</p>
+            </div>
+            <form class="contact-form" onsubmit="submitContactForm(event)">
+                <div class="contact-form-grid">
+                    <input type="text" placeholder="Ваше имя *" required>
+                    <input type="email" placeholder="Email *" required>
+                    <input type="tel" placeholder="Телефон">
+                    <select>
+                        <option value="">Тип проекта</option>
+                        <option value="rental">Аренда портала</option>
+                        <option value="creation">Разработка под ключ</option>
+                        <option value="integration">Интеграция 1С</option>
+                        <option value="modules">Модули</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+                <textarea class="full" placeholder="Опишите ваш проект или задачу..."></textarea>
+                <button type="submit">Отправить заявку</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="#E63946"/>
+                        <path d="M12 10h16v4H12z" fill="white"/>
+                        <path d="M10 18h20v4H10z" fill="white"/>
+                        <path d="M12 26h16v4H12z" fill="white"/>
+                    </svg>
+                    S-ALPHA<span>.B2B</span>
+                </div>
+                <p>Создаём современные B2B порталы с интеграцией 1С. Аренда и разработка под ключ с 2010 года. Более 500 успешных проектов.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Услуги</h4>
+                <a href="#b2b-cabinet">Создание портала</a>
+                <a href="#rental">Аренда</a>
+                <a href="#modules">Модули</a>
+                <a href="#integration-1c">Интеграции</a>
+            </div>
+            <div class="footer-column">
+                <h4>Контент</h4>
+                <a href="#blog">Блог разработчиков</a>
+                <a href="#articles">Статьи по B2B</a>
+                <a href="#">Видео</a>
+                <a href="#">Глоссарий</a>
+            </div>
+            <div class="footer-column">
+                <h4>Компания</h4>
+                <a href="#">О нас</a>
+                <a href="#developers">Команда</a>
+                <a href="#cases">Клиенты</a>
+                <a href="#partners">Партнёрам</a>
+            </div>
+            <div class="footer-column">
+                <h4>Контакты</h4>
+                <a href="tel:+78124673477">+7 (812) 467-34-77</a>
+                <a href="mailto:info@s-alpha.ru">info@s-alpha.ru</a>
+                <a href="#">ВКонтакте</a>
+                <a href="#">Telegram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 ООО "АЛЬФА". Все права защищены.</span>
+            <div style="display: flex; gap: 24px;">
+                <a href="#" style="color: inherit;">Политика конфиденциальности</a>
+                <a href="#" style="color: inherit;">Условия использования</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Banners Carousel
+        const bannersSwiper = new Swiper('.bannersSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.banner-pagination',
+                clickable: true,
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            }
+        });
+
+        // Auth tabs
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const tabs = document.querySelectorAll('.auth-tab');
+
+            tabs.forEach(t => t.classList.remove('active'));
+
+            if (tab === 'login') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                tabs[0].classList.add('active');
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                tabs[1].classList.add('active');
+            }
+        }
+
+        // Contact form
+        function submitContactForm(e) {
+            e.preventDefault();
+            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+        }
+
+        // Open partner auth
+        function openPartnerAuth() {
+            document.querySelector('.partners-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroBg = document.querySelector('.hero-portal-bg');
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

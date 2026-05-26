@@ -1,0 +1,4348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S-ALPHA - B2B порталы под ключ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #E63946;
+            --primary-dark: #C1121F;
+            --secondary-red: #FF6B6B;
+            --accent-orange: #F77F00;
+            --dark: #1D3557;
+            --gray-light: #F8F9FA;
+            --text-dark: #1A1A1A;
+            --text-gray: #6B7280;
+            --border-color: #E5E7EB;
+            --max-width: 1600px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 140px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .header.scrolled {
+            height: 100px;
+        }
+
+        .header-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 60px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .header-bottom {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary-red);
+            letter-spacing: -1px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
+        .header-top-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .phone {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .btn-cabinet {
+            padding: 12px 28px;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-cabinet:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+        }
+
+        /* Search in Header - FIXED */
+        .header-search {
+            position: relative;
+            width: 280px;
+            flex-shrink: 0;
+        }
+
+        .header-search-input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 13px;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: white;
+            z-index: 2;
+        }
+
+        .header-search-input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.1);
+        }
+
+        .header-search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: var(--text-gray);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Enhanced Navigation */
+        .nav {
+            display: flex;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 14px;
+            font-weight: 700;
+            padding: 10px 16px;
+            display: block;
+            border-radius: 8px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-item > a:hover {
+            background: var(--gray-light);
+            color: var(--primary-red);
+        }
+
+        /* Enhanced Mega Menu */
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 900px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 0;
+            transform: translateY(20px);
+            overflow: hidden;
+            z-index: 1001;
+        }
+
+        .nav-item:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(10px);
+        }
+
+        .mega-menu-inner {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+        }
+
+        .mega-menu-featured {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .mega-menu-featured img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .mega-menu-featured:hover img {
+            transform: scale(1.05);
+        }
+
+        .mega-menu-featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px;
+            color: white;
+        }
+
+        .mega-menu-featured-overlay h5 {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .mega-menu-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .mega-menu-section h4 {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-gray);
+            margin-bottom: 12px;
+        }
+
+        .mega-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            margin-bottom: 6px;
+        }
+
+        .mega-menu-item:hover {
+            background: var(--gray-light);
+        }
+
+        .mega-menu-item-thumb {
+            width: 40px;
+            height: 28px;
+            border-radius: 6px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .mega-menu-item-content h5 {
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .mega-menu-item-content p {
+            font-size: 11px;
+            color: var(--text-gray);
+            line-height: 1.3;
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 140px;
+            min-height: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.92) 0%, rgba(29, 53, 87, 0.88) 100%);
+        }
+
+        .hero-slide-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 100px 60px;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .hero-slide-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            color: white;
+            margin-bottom: 24px;
+            max-width: 800px;
+        }
+
+        .hero-slide-content p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-dots {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .hero-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hero-dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        /* Enhanced Cases */
+        .cases-section {
+            padding: 100px 60px;
+            background: white;
+        }
+
+        .cases-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .cases-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .cases-header p {
+            font-size: 16px;
+            color: var(--text-gray);
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(230, 57, 70, 0.15);
+        }
+
+        .case-card-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .case-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .case-card:hover .case-card-image img {
+            transform: scale(1.08);
+        }
+
+        .case-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary-red);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .case-card-content {
+            padding: 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-provider {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .case-provider-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 12px;
+            color: white;
+        }
+
+        .case-provider.alfa .case-provider-logo {
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-dark));
+        }
+
+        .case-provider.fact .case-provider-logo {
+            background: linear-gradient(135deg, #fe4b4b, #cc3a3a);
+        }
+
+        .case-provider.s-alpha .case-provider-logo {
+            background: linear-gradient(135deg, var(--dark), #0f1f33);
+        }
+
+        .case-provider-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-gray);
+        }
+
+        .case-card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .case-description {
+            font-size: 13px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .case-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .case-spec {
+            background: var(--gray-light);
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .case-spec-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            margin-bottom: 2px;
+        }
+
+        .case-spec-value {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--primary-red);
+        }
+
+        .case-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px;
+            background: linear-gradient(135deg, #FFF5F5, #FFE5E5);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .case-price-info {
+            flex: 1;
+        }
+
+        .case-price-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            margin-bottom: 2px;
+        }
+
+        .case-price-value {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--primary-red);
+        }
+
+        .case-cta {
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .case-cta-minimal {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+
+        .case-cta-email {
+            flex: 1;
+            margin-right: 12px;
+        }
+
+        .case-cta-email input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 13px;
+            font-family: inherit;
+        }
+
+        .case-cta-email input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .case-cta-btn {
+            padding: 10px 20px;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .case-cta-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .case-features {
+            margin-bottom: 12px;
+        }
+
+        .case-features h5 {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            margin-bottom: 10px;
+        }
+
+        .case-features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .case-feature {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .case-feature.positive {
+            color: #10B981;
+        }
+
+        .case-feature.negative {
+            color: var(--text-gray);
+        }
+
+        /* Blog Section with Team */
+        .blog-section {
+            padding: 120px 60px;
+            background: white;
+        }
+
+        .blog-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+        }
+
+        .blog-main {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        .blog-sidebar {
+            position: sticky;
+            top: 130px;
+            height: fit-content;
+        }
+
+        .blog-header {
+            margin-bottom: 50px;
+        }
+
+        .blog-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        /* Featured Article */
+        .article-featured {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        .article-featured-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .article-featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 60px;
+            color: white;
+        }
+
+        .article-featured-overlay .article-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .article-featured-overlay .article-tag {
+            padding: 8px 16px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .article-featured-overlay h3 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .article-featured-overlay p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .article-featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .article-author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Standard Articles */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .article-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .article-card-content {
+            padding: 30px;
+        }
+
+        .article-card-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .article-card-tag {
+            padding: 4px 12px;
+            background: #FFF5F5;
+            color: var(--primary-red);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .article-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .article-card-excerpt {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .article-card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .article-card-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .article-card-author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .article-card-author-name {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .article-card-date {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        /* Team Section within Blog */
+        .team-section {
+            margin-top: 80px;
+            padding-top: 80px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .team-section h3 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-photo {
+            height: 200px;
+            position: relative;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-social {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .team-social a {
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .team-social a:hover {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .team-info {
+            padding: 24px;
+        }
+
+        .team-name {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .team-role {
+            font-size: 13px;
+            color: var(--primary-red);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .team-bio {
+            font-size: 13px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .team-articles {
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .team-articles h5 {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            margin-bottom: 10px;
+        }
+
+        .team-article-link {
+            display: block;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            padding: 6px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .team-article-link:hover {
+            background: var(--gray-light);
+            color: var(--primary-red);
+        }
+
+        /* Sidebar */
+        .sidebar-section {
+            margin-bottom: 40px;
+        }
+
+        .sidebar-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        .sidebar-list {
+            list-style: none;
+        }
+
+        .sidebar-list li {
+            margin-bottom: 12px;
+        }
+
+        .sidebar-list a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .sidebar-list a:hover {
+            background: var(--gray-light);
+            color: var(--primary-red);
+            transform: translateX(5px);
+        }
+
+        .sidebar-list-thumb {
+            width: 60px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        /* Compact CP Section */
+        .cp-section {
+            padding: 50px 60px;
+            background: linear-gradient(135deg, var(--dark) 0%, #0f1f33 100%);
+            position: relative;
+        }
+
+        .cp-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cp-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .cp-content p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .cp-form-compact {
+            display: grid;
+            grid-template-columns: 1fr 1fr 160px;
+            gap: 14px;
+            align-items: end;
+        }
+
+        .cp-form-compact input {
+            padding: 14px 18px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 14px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .cp-form-compact input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .cp-form-compact input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .cp-form-compact .cp-select {
+            padding: 14px 18px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 14px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="white" d="M6 8L2 4h8z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        .cp-form-compact .cp-select:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .cp-form-compact .cp-select option {
+            background: var(--dark);
+        }
+
+        .cp-form-compact button {
+            padding: 14px 28px;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cp-form-compact button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Calculator */
+        .calculator-section {
+            padding: 80px 60px;
+            background: white;
+        }
+
+        .calc-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .calc-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .calc-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .calc-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .calc-tab {
+            padding: 20px 48px;
+            background: white;
+            color: var(--text-dark);
+            border: 3px solid var(--border-color);
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .calc-tab.active {
+            border-color: var(--primary-red);
+            background: var(--primary-red);
+            color: white;
+            box-shadow: 0 12px 40px rgba(230, 57, 70, 0.3);
+            transform: scale(1.02);
+        }
+
+        .calc-tab:hover:not(.active) {
+            border-color: var(--primary-red);
+        }
+
+        .calc-panel {
+            display: none;
+        }
+
+        .calc-panel.active {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            background: var(--gray-light);
+            border-radius: 24px;
+            padding: 40px;
+        }
+
+        .calc-fields {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .calc-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .calc-field.full {
+            grid-column: span 2;
+        }
+
+        .calc-field label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-dark);
+        }
+
+        .calc-field select {
+            padding: 14px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: white;
+            cursor: pointer;
+        }
+
+        .calc-field select:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+        }
+
+        .calc-result {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .calc-result h3 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-gray);
+            margin-bottom: 16px;
+        }
+
+        .calc-result .price {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--primary-red);
+            margin-bottom: 6px;
+            line-height: 1;
+        }
+
+        .calc-result .period {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+        }
+
+        .btn-calc {
+            padding: 16px 32px;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-calc:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Enhanced Related Articles */
+        .related-articles {
+            padding: 100px 60px;
+            background: var(--gray-light);
+        }
+
+        .related-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .related-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .related-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .related-category {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+        }
+
+        .related-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .related-category-header {
+            position: relative;
+            height: 160px;
+        }
+
+        .related-category-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .related-category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px;
+        }
+
+        .related-category-overlay h3 {
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .related-category-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+        }
+
+        .related-subcategories {
+            padding: 20px;
+        }
+
+        .related-subcategory {
+            margin-bottom: 20px;
+        }
+
+        .related-subcategory h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .related-articles-list {
+            list-style: none;
+        }
+
+        .related-articles-list li {
+            margin-bottom: 10px;
+        }
+
+        .related-articles-list a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .related-articles-list a:hover {
+            background: var(--gray-light);
+            color: var(--primary-red);
+        }
+
+        .related-articles-list a img {
+            width: 50px;
+            height: 35px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .related-tags {
+            padding: 20px;
+            background: linear-gradient(135deg, #FFF5F5, #FFE5E5);
+            border-radius: 16px;
+        }
+
+        .related-tags h4 {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            color: var(--text-gray);
+        }
+
+        .related-tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .related-tag {
+            padding: 6px 12px;
+            background: white;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .related-tag:hover {
+            background: var(--primary-red);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&h=600&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-white {
+            padding: 18px 40px;
+            background: white;
+            color: var(--primary-red);
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-white svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 80px 60px 40px;
+            background: var(--dark);
+            color: white;
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand .logo {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .footer-column h4 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-column a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-bottom {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* ==================== MOBILE NAVIGATION ==================== */
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 74px;
+            left: 0;
+            right: 0;
+            background: white;
+            z-index: 999;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 74px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
+
+        .mobile-nav-overlay.active {
+            display: block;
+        }
+
+        /* ==================== RESPONSIVE DESIGN ==================== */
+        /* Mobile First Approach - Tablet (768px - 1023px) */
+        @media (max-width: 1023px) {
+            /* Header */
+            .header {
+                height: auto;
+                padding: 15px 0;
+            }
+
+            .header-content {
+                padding: 0 30px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .header-top {
+                width: 100%;
+                margin-bottom: 0;
+            }
+
+            .header-bottom {
+                width: 100%;
+                order: 3;
+                display: none;
+            }
+
+            .header-search {
+                order: 2;
+                width: 200px;
+            }
+
+            .header-top-actions {
+                margin-left: auto;
+            }
+
+            .phone {
+                display: none;
+            }
+
+            /* Add mobile menu button */
+            .mobile-menu-toggle {
+                display: flex;
+                width: 44px;
+                height: 44px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                background: var(--gray-light);
+                border-radius: 10px;
+                cursor: pointer;
+                order: 3;
+            }
+
+            .mobile-menu-toggle span {
+                width: 20px;
+                height: 2px;
+                background: var(--dark);
+                border-radius: 2px;
+                transition: all 0.3s;
+            }
+
+            .mobile-menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(4px, 4px);
+            }
+
+            .mobile-menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(4px, -4px);
+            }
+
+            /* Mobile Navigation */
+            .mobile-nav {
+                display: block;
+                position: fixed;
+                top: 74px;
+                left: 0;
+                right: 0;
+                background: white;
+                border-bottom: 1px solid var(--border-color);
+                padding: 15px 0;
+                z-index: 999;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            }
+
+            .mobile-nav.active {
+                transform: translateY(0);
+            }
+
+            .mobile-nav-inner {
+                max-height: 60vh;
+                overflow-y: auto;
+                padding: 0 20px;
+            }
+
+            .mobile-nav-section {
+                margin-bottom: 20px;
+            }
+
+            .mobile-nav-title {
+                font-size: 11px;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: var(--text-gray);
+                margin-bottom: 12px;
+                padding: 0 5px;
+            }
+
+            .mobile-nav-link {
+                display: block;
+                padding: 12px 15px;
+                color: var(--text-dark);
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: 600;
+                border-radius: 8px;
+                margin-bottom: 4px;
+                transition: all 0.2s;
+            }
+
+            .mobile-nav-link:active {
+                background: var(--gray-light);
+            }
+
+            .mobile-nav-sublinks {
+                padding-left: 15px;
+                margin-top: 8px;
+            }
+
+            .mobile-nav-sublink {
+                display: block;
+                padding: 10px 15px;
+                color: var(--text-gray);
+                text-decoration: none;
+                font-size: 14px;
+                border-radius: 6px;
+                margin-bottom: 4px;
+                transition: all 0.2s;
+            }
+
+            .mobile-nav-sublink:active {
+                background: var(--gray-light);
+                color: var(--primary-red);
+            }
+
+            /* Hero */
+            .hero {
+                margin-top: 74px;
+                min-height: 600px;
+            }
+
+            .hero-slide-content {
+                padding: 80px 30px 60px;
+            }
+
+            .hero-slide-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-slide-content p {
+                font-size: 16px;
+                max-width: 100%;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .hero-buttons .btn-hero {
+                width: 100%;
+                text-align: center;
+                padding: 16px 24px;
+            }
+
+            /* Cases */
+            .cases-section {
+                padding: 60px 30px;
+            }
+
+            .cases-header h2 {
+                font-size: 36px;
+            }
+
+            .case-slide-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 40px 30px;
+            }
+
+            .case-image {
+                height: 300px;
+            }
+
+            .case-info h3 {
+                font-size: 28px;
+            }
+
+            .case-tags {
+                justify-content: flex-start;
+            }
+
+            .case-stats {
+                gap: 15px;
+            }
+
+            .case-stat-number {
+                font-size: 28px;
+            }
+
+            /* Calculator */
+            .calculator-section {
+                padding: 60px 30px;
+            }
+
+            .calc-header h2 {
+                font-size: 36px;
+            }
+
+            .calc-tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .calc-tab {
+                flex: 1;
+                min-width: 200px;
+                padding: 14px 20px;
+                justify-content: center;
+                font-size: 14px;
+            }
+
+            .calc-panel {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .calc-fields {
+                grid-template-columns: 1fr;
+            }
+
+            .calc-result {
+                padding: 40px 30px;
+            }
+
+            .calc-result .price {
+                font-size: 48px;
+            }
+
+            /* Blog */
+            .blog-section {
+                padding: 60px 30px;
+            }
+
+            .blog-header h2 {
+                font-size: 40px;
+            }
+
+            .blog-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .blog-sidebar {
+                position: static;
+                margin-top: 40px;
+            }
+
+            .article-featured-image {
+                height: 350px;
+            }
+
+            .article-featured-overlay {
+                padding: 40px 30px;
+            }
+
+            .article-featured-overlay h3 {
+                font-size: 28px;
+            }
+
+            .article-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .article-card-image {
+                height: 160px;
+            }
+
+            .article-card-content {
+                padding: 20px;
+            }
+
+            .article-card h3 {
+                font-size: 16px;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .team-photo {
+                height: 180px;
+            }
+
+            .team-social a {
+                width: 32px;
+                height: 32px;
+                font-size: 11px;
+            }
+
+            /* CP Section */
+            .cp-section {
+                padding: 80px 30px;
+                background-attachment: scroll;
+            }
+
+            .cp-content {
+                padding: 0;
+            }
+
+            .cp-content h2 {
+                font-size: 36px;
+            }
+
+            .cp-form {
+                padding: 40px 30px;
+            }
+
+            .cp-form-options {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            /* Related Articles */
+            .related-articles {
+                padding: 60px 30px;
+            }
+
+            .related-categories {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .related-category-image {
+                height: 140px;
+            }
+
+            /* CTA */
+            .cta-section {
+                padding: 60px 30px;
+            }
+
+            .cta-content h2 {
+                font-size: 36px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn-white {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 50px 30px 30px;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .footer-brand {
+                grid-column: span 2;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        /* Mobile (up to 767px) - Android & iPhone */
+        @media (max-width: 767px) {
+            /* Base styles */
+            html {
+                font-size: 14px;
+                -webkit-text-size-adjust: 100%;
+                -webkit-tap-highlight-color: rgba(230, 57, 70, 0.2);
+            }
+
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+
+            /* Header */
+            .header {
+                height: 60px;
+                padding: 12px 0;
+            }
+
+            .header-content {
+                padding: 0 20px;
+                gap: 10px;
+            }
+
+            .header-top {
+                margin-bottom: 0;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 18px;
+            }
+
+            .header-top-actions {
+                gap: 12px;
+            }
+
+            .btn-cabinet {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+
+            .mobile-menu-toggle {
+                display: flex !important;
+                order: 2;
+            }
+
+            .header-search {
+                display: none;
+            }
+
+            .mobile-nav {
+                top: 60px;
+                max-height: calc(100vh - 60px);
+            }
+
+            .mobile-nav-inner {
+                max-height: none;
+            }
+
+            /* Hero */
+            .hero {
+                margin-top: 60px;
+                min-height: 500px;
+            }
+
+            .hero-slide-bg {
+                background-attachment: scroll;
+            }
+
+            .hero-slide-content {
+                padding: 60px 20px 40px;
+                text-align: center;
+            }
+
+            .hero-slide-content h1 {
+                font-size: 28px;
+                line-height: 1.2;
+            }
+
+            .hero-slide-content p {
+                font-size: 14px;
+                margin-bottom: 24px;
+            }
+
+            .hero-buttons {
+                gap: 10px;
+            }
+
+            .hero-buttons .btn-hero {
+                padding: 14px 24px;
+                font-size: 14px;
+            }
+
+            .hero-dots {
+                bottom: 15px;
+                gap: 8px;
+            }
+
+            .hero-dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            /* Cases */
+            .cases-section {
+                padding: 40px 20px;
+            }
+
+            .cases-header h2 {
+                font-size: 28px;
+            }
+
+            .cases-header > p {
+                font-size: 14px;
+            }
+
+            .case-slide {
+                padding: 30px 20px;
+            }
+
+            .case-slide-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .case-image {
+                height: 220px;
+                border-radius: 16px;
+            }
+
+            .case-info h3 {
+                font-size: 22px;
+                line-height: 1.3;
+            }
+
+            .case-tags {
+                gap: 6px;
+                margin-bottom: 16px;
+            }
+
+            .case-tag {
+                padding: 5px 12px;
+                font-size: 10px;
+            }
+
+            .case-description {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            .case-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            .case-stat {
+                padding: 12px 8px;
+            }
+
+            .case-stat-number {
+                font-size: 20px;
+            }
+
+            .case-stat-label {
+                font-size: 10px;
+            }
+
+            .cases-nav {
+                margin-top: 24px;
+            }
+
+            .cases-nav-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 16px;
+            }
+
+            /* Calculator */
+            .calculator-section {
+                padding: 40px 20px;
+            }
+
+            .calc-header h2 {
+                font-size: 28px;
+            }
+
+            .calc-tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                justify-content: flex-start;
+                gap: 10px;
+                padding-bottom: 15px;
+            }
+
+            .calc-tab {
+                flex: 0 0 auto;
+                min-width: 160px;
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+
+            .calc-tab span {
+                font-size: 16px;
+            }
+
+            .calc-panel {
+                gap: 24px;
+            }
+
+            .calc-fields {
+                gap: 16px;
+            }
+
+            .calc-field label {
+                font-size: 12px;
+            }
+
+            .calc-field select {
+                padding: 14px 16px;
+                font-size: 15px;
+            }
+
+            .calc-result {
+                padding: 30px 20px;
+            }
+
+            .calc-result h3 {
+                font-size: 12px;
+            }
+
+            .calc-result .price {
+                font-size: 36px;
+            }
+
+            .calc-result .period {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+
+            .btn-calc {
+                padding: 16px;
+                font-size: 15px;
+            }
+
+            /* Blog */
+            .blog-section {
+                padding: 40px 20px;
+            }
+
+            .blog-header h2 {
+                font-size: 28px;
+            }
+
+            .blog-header > p {
+                font-size: 14px;
+            }
+
+            .blog-content {
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .blog-sidebar {
+                position: static;
+            }
+
+            .article-featured {
+                margin-bottom: 30px;
+            }
+
+            .article-featured-image {
+                height: 250px;
+            }
+
+            .article-featured-overlay {
+                padding: 30px 20px;
+            }
+
+            .article-featured-overlay .article-tags {
+                gap: 6px;
+                margin-bottom: 12px;
+            }
+
+            .article-featured-overlay .article-tag {
+                padding: 5px 12px;
+                font-size: 10px;
+            }
+
+            .article-featured-overlay h3 {
+                font-size: 20px;
+                line-height: 1.3;
+                margin-bottom: 10px;
+            }
+
+            .article-featured-overlay p {
+                font-size: 13px;
+                margin-bottom: 12px;
+            }
+
+            .article-featured-meta {
+                gap: 12px;
+            }
+
+            .article-author-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .article-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .article-card {
+                border-radius: 16px;
+            }
+
+            .article-card-image {
+                height: 180px;
+            }
+
+            .article-card-content {
+                padding: 16px;
+            }
+
+            .article-card-tags {
+                gap: 6px;
+                margin-bottom: 10px;
+            }
+
+            .article-card-tag {
+                padding: 4px 10px;
+                font-size: 9px;
+            }
+
+            .article-card h3 {
+                font-size: 15px;
+                line-height: 1.3;
+                margin-bottom: 8px;
+            }
+
+            .article-card-excerpt {
+                font-size: 13px;
+                line-height: 1.5;
+                margin-bottom: 12px;
+            }
+
+            .article-card-meta {
+                padding-top: 12px;
+                margin-bottom: 0;
+            }
+
+            .article-card-author-avatar {
+                width: 24px;
+                height: 24px;
+                font-size: 11px;
+            }
+
+            .article-card-author-name {
+                font-size: 12px;
+            }
+
+            .article-card-date {
+                font-size: 11px;
+            }
+
+            /* Team Section */
+            .team-section {
+                margin-top: 30px;
+                padding-top: 30px;
+            }
+
+            .team-section h3 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .team-card {
+                border-radius: 16px;
+            }
+
+            .team-photo {
+                height: 160px;
+            }
+
+            .team-social {
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                gap: 6px;
+            }
+
+            .team-social a {
+                width: 28px;
+                height: 28px;
+                font-size: 10px;
+            }
+
+            .team-info {
+                padding: 16px;
+            }
+
+            .team-name {
+                font-size: 16px;
+            }
+
+            .team-role {
+                font-size: 12px;
+            }
+
+            .team-bio {
+                font-size: 12px;
+                margin-bottom: 12px;
+            }
+
+            .team-articles h5 {
+                font-size: 10px;
+            }
+
+            .team-article-link {
+                font-size: 11px;
+                padding: 4px;
+            }
+
+            .blog-cta {
+                padding: 20px;
+            }
+
+            /* Sidebar */
+            .sidebar-section {
+                margin-bottom: 25px;
+            }
+
+            .sidebar-title {
+                font-size: 13px;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+
+            .sidebar-list li {
+                margin-bottom: 10px;
+            }
+
+            .sidebar-list a {
+                font-size: 13px;
+                padding: 8px;
+            }
+
+            .sidebar-list-thumb {
+                width: 50px;
+                height: 35px;
+            }
+
+            /* CP Section */
+            .cp-section {
+                padding: 50px 20px;
+                background-attachment: scroll;
+            }
+
+            .cp-content {
+                text-align: center;
+            }
+
+            .cp-content h2 {
+                font-size: 28px;
+            }
+
+            .cp-content > p {
+                font-size: 14px;
+            }
+
+            .cp-form {
+                padding: 30px 20px;
+            }
+
+            .cp-form-field input {
+                padding: 14px 18px;
+                font-size: 15px;
+            }
+
+            .cp-form-options {
+                gap: 10px;
+            }
+
+            .cp-option {
+                padding: 16px;
+            }
+
+            .cp-option-icon {
+                font-size: 24px;
+            }
+
+            .cp-option h4 {
+                font-size: 14px;
+            }
+
+            .cp-option p {
+                font-size: 12px;
+            }
+
+            .cp-form-submit {
+                padding: 16px;
+                font-size: 15px;
+            }
+
+            /* Related Articles */
+            .related-articles {
+                padding: 50px 20px;
+            }
+
+            .related-header {
+                margin-bottom: 30px;
+            }
+
+            .related-header h2 {
+                font-size: 28px;
+            }
+
+            .related-categories {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .related-category {
+                border-radius: 16px;
+                overflow: hidden;
+            }
+
+            .related-category-image {
+                height: 120px;
+            }
+
+            .related-category-overlay {
+                padding: 15px;
+            }
+
+            .related-category-overlay h4 {
+                font-size: 16px;
+            }
+
+            .related-category-content {
+                padding: 16px;
+            }
+
+            .related-articles-list a {
+                font-size: 13px;
+            }
+
+            .related-articles-list a img {
+                width: 45px;
+                height: 30px;
+            }
+
+            .related-tags {
+                padding: 16px;
+            }
+
+            .related-tags-cloud {
+                gap: 6px;
+            }
+
+            .related-tag {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+
+            /* CTA */
+            .cta-section {
+                padding: 50px 20px;
+            }
+
+            .cta-content h2 {
+                font-size: 28px;
+                line-height: 1.3;
+            }
+
+            .cta-content > p {
+                font-size: 14px;
+                margin-bottom: 24px;
+            }
+
+            .cta-buttons {
+                gap: 12px;
+            }
+
+            .btn-white {
+                padding: 16px 32px;
+                font-size: 14px;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 40px 20px 25px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                margin-bottom: 30px;
+            }
+
+            .footer-brand {
+                text-align: center;
+            }
+
+            .footer-brand .logo {
+                justify-content: center;
+                margin-bottom: 12px;
+            }
+
+            .footer-brand p {
+                font-size: 13px;
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .footer-column h4 {
+                font-size: 12px;
+            }
+
+            .footer-column a {
+                font-size: 12px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                font-size: 11px;
+            }
+
+            .footer-bottom-links {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            /* Touch optimizations */
+            @media (hover: none) and (pointer: coarse) {
+                .btn-hero,
+                .btn-cabinet,
+                .btn-calc,
+                .btn-white {
+                    transition: none;
+                }
+
+                .btn-hero:active,
+                .btn-cabinet:active,
+                .btn-calc:active,
+                .btn-white:active {
+                    transform: scale(0.97);
+                    opacity: 0.9;
+                }
+
+                .article-card:active,
+                .team-card:active,
+                .case-slide:active {
+                    transform: scale(0.99);
+                }
+            }
+
+            /* iPhone specific fixes */
+            @supports (-webkit-touch-callout: none) {
+                /* iOS 12+ specific styles */
+                .mobile-nav {
+                    -webkit-overflow-scrolling: touch;
+                }
+
+                .header-search-input {
+                    font-size: 16px; /* Prevent zoom on focus */
+                }
+
+                .calc-field select,
+                .cp-form-field input {
+                    font-size: 16px;
+                }
+            }
+
+            /* Android specific */
+            @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                /* Non-retina Android devices */
+                .hero-slide-bg {
+                    background-attachment: scroll;
+                }
+            }
+
+            /* Landscape orientation */
+            @media (orientation: landscape) and (max-height: 600px) {
+                .hero {
+                    min-height: 100vh;
+                }
+
+                .hero-slide-content {
+                    padding: 40px 20px;
+                }
+
+                .hero-slide-content h1 {
+                    font-size: 24px;
+                }
+
+                .hero-slide-content p {
+                    display: none;
+                }
+            }
+
+            /* Small mobile (iPhone SE, etc.) */
+            @media (max-width: 374px) {
+                .hero-slide-content h1 {
+                    font-size: 24px;
+                }
+
+                .case-stat-number {
+                    font-size: 18px;
+                }
+
+                .calc-result .price {
+                    font-size: 32px;
+                }
+            }
+        }
+
+        /* Large Desktop (1600px+) */
+        @media (min-width: 1600px) {
+            .max-width {
+                width: 1600px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-content">
+            <div class="header-top">
+                <a href="#" class="logo">
+                    <div class="logo-icon">S</div>
+                    S-ALPHA<span>.B2B</span>
+                </a>
+                <div class="header-top-actions">
+                    <div class="phone">+7 (812) 467-34-77</div>
+                    <a href="#" class="btn-cabinet">Личный кабинет</a>
+                    <!-- Mobile Menu Toggle -->
+                    <div class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Меню">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <nav class="nav">
+                    <div class="nav-item">
+                        <a href="#services">Услуги</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-inner">
+                                <div class="mega-menu-featured">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=200&fit=crop" alt="Услуги">
+                                    <div class="mega-menu-featured-overlay">
+                                        <h5>Создание B2B портала</h5>
+                                        <p>Индивидуальная разработка</p>
+                                    </div>
+                                </div>
+                                <div class="mega-menu-items">
+                                    <div class="mega-menu-section">
+                                        <h4>Основные услуги</h4>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Создание B2B портала</h5>
+                                                <p>от 250 000 ₽</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Аренда кабинета</h5>
+                                                <p>от 15 500 ₽/мес</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Модули для B2B</h5>
+                                                <p>Контрагенты, скидки</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="mega-menu-section">
+                                        <h4>Интеграции</h4>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Интеграция 1С</h5>
+                                                <p>Полная синхронизация</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Битрикс-24</h5>
+                                                <p>CRM и автоматизация</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>API интеграции</h5>
+                                                <p>С любыми системами</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="mega-menu-section">
+                                        <h4>Дополнительно</h4>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Быстрый старт</h5>
+                                                <p>Запуск за 14 дней</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>SEO</h5>
+                                                <p>Продвижение</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Дизайн</h5>
+                                                <p>UX/UI решения</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#blog">Контент</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-inner">
+                                <div class="mega-menu-featured">
+                                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=200&fit=crop" alt="Blog">
+                                    <div class="mega-menu-featured-overlay">
+                                        <h5>Блог разработчиков</h5>
+                                        <p>Технические статьи и инсайты</p>
+                                    </div>
+                                </div>
+                                <div class="mega-menu-items">
+                                    <div class="mega-menu-section">
+                                        <h4>Блог разработчиков</h4>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Интеграция 1С</h5>
+                                                <p>Полное руководство</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Техническая реализация</h5>
+                                                <p>API и архитектура</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Функционал менеджера</h5>
+                                                <p>Управление порталом</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="mega-menu-section">
+                                        <h4>Статьи по B2B</h4>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Аренда vs Покупка</h5>
+                                                <p>Сравнение подходов</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Работа с прайс-листами</h5>
+                                                <p>Автоматизация процесса</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Модульная система</h5>
+                                                <p>Гибкая настройка</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="mega-menu-section">
+                                        <h4>Ресурсы</h4>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Видео материалы</h5>
+                                                <p>Обучающие ролики</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Глоссарий</h5>
+                                                <p>Термины и определения</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>FAQ</h5>
+                                                <p>Частые вопросы</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#company">Компания</a>
+                        <div class="mega-menu" style="min-width: 350px;">
+                            <div class="mega-menu-inner" style="grid-template-columns: 1fr;">
+                                <div class="mega-menu-items" style="grid-template-columns: 1fr;">
+                                    <div class="mega-menu-section">
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Наша команда</h5>
+                                                <p>Разработчики и специалисты</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Клиенты</h5>
+                                                <p>Наши проекты и кейсы</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Новости</h5>
+                                                <p>Последние обновления</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="mega-menu-item">
+                                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=80&h=56&fit=crop" class="mega-menu-item-thumb" alt="">
+                                            <div class="mega-menu-item-content">
+                                                <h5>Карьера</h5>
+                                                <p>Присоединяйтесь к нам</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" style="padding: 10px 16px;">Контакты</a>
+                </nav>
+                <div class="header-search">
+                    <span class="header-search-icon">🔍</span>
+                    <input type="text" class="header-search-input" placeholder="Поиск по сайту...">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-inner">
+            <div class="mobile-nav-section">
+                <div class="mobile-nav-title">Услуги</div>
+                <a href="#services" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    🚀 Все услуги
+                </a>
+                <div class="mobile-nav-sublinks">
+                    <a href="#calculator" class="mobile-nav-sublink" onclick="closeMobileMenu()">
+                        B2B портал под ключ
+                    </a>
+                    <a href="#calculator" class="mobile-nav-sublink" onclick="closeMobileMenu()">
+                        Аренда кабинета
+                    </a>
+                    <a href="#calculator" class="mobile-nav-sublink" onclick="closeMobileMenu()">
+                        Модули для B2B
+                    </a>
+                </div>
+            </div>
+
+            <div class="mobile-nav-section">
+                <div class="mobile-nav-title">Интеграции</div>
+                <a href="#services" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    📊 Интеграции
+                </a>
+                <div class="mobile-nav-sublinks">
+                    <a href="#calculator" class="mobile-nav-sublink" onclick="closeMobileMenu()">
+                        Интеграция 1С
+                    </a>
+                    <a href="#calculator" class="mobile-nav-sublink" onclick="closeMobileMenu()">
+                        Битрикс-24
+                    </a>
+                    <a href="#calculator" class="mobile-nav-sublink" onclick="closeMobileMenu()">
+                        API интеграции
+                    </a>
+                </div>
+            </div>
+
+            <div class="mobile-nav-section">
+                <div class="mobile-nav-title">Контент</div>
+                <a href="#blog" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    📝 Блог разработчиков
+                </a>
+                <a href="#blog" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    📚 Статьи по B2B
+                </a>
+                <a href="#cases" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    🏆 Кейсы
+                </a>
+            </div>
+
+            <div class="mobile-nav-section">
+                <div class="mobile-nav-title">Компания</div>
+                <a href="#" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    👥 О нас
+                </a>
+                <a href="#blog" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    👨‍💻 Команда
+                </a>
+                <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    📞 Контакты
+                </a>
+            </div>
+
+            <div class="mobile-nav-section">
+                <div class="mobile-nav-title">Контакты</div>
+                <a href="tel:+78124673477" class="mobile-nav-link">
+                    📞 +7 (812) 467-34-77
+                </a>
+                <a href="mailto:info@s-alpha.ru" class="mobile-nav-link">
+                    ✉️ info@s-alpha.ru
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Overlay for mobile menu -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Hero Slider -->
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=900&fit=crop');"></div>
+                <div class="hero-slide-overlay"></div>
+                <div class="hero-slide-content">
+                    <h1>B2B порталы под ключ с интеграцией 1С</h1>
+                    <p>Создаём современные B2B порталы для автоматизации бизнеса. Полная интеграция с 1С Предприятие, Битрикс и другими CRM системами. Аренда от 15 500 ₽/мес.</p>
+                    <div style="display: flex; gap: 16px;">
+                        <a href="#calculator" class="btn-white" style="padding: 20px 48px;">Рассчитать стоимость</a>
+                        <a href="#cases" class="btn-white" style="padding: 20px 48px; background: transparent; border: 2px solid white;">Смотреть кейсы</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&h=900&fit=crop');"></div>
+                <div class="hero-slide-overlay"></div>
+                <div class="hero-slide-content">
+                    <h1>Автоматизируйте ваш B2B бизнес</h1>
+                    <p>500+ компаний уже увеличили продажи с нашими порталами. Интеграция с 1С, управление контрагентами, скидками и бонусами.</p>
+                    <div style="display: flex; gap: 16px;">
+                        <a href="#calculator" class="btn-white" style="padding: 20px 48px;">Начать сейчас</a>
+                        <a href="#blog" class="btn-white" style="padding: 20px 48px; background: transparent; border: 2px solid white;">Блог разработчиков</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&h=900&fit=crop');"></div>
+                <div class="hero-slide-overlay"></div>
+                <div class="hero-slide-content">
+                    <h1>Аренда B2B портала от 15 500 ₽/мес</h1>
+                    <p>Готовое решение без первоначальных вложений. Быстрый старт за 14 дней с полной настройкой и обучением команды.</p>
+                    <div style="display: flex; gap: 16px;">
+                        <a href="#cp" class="btn-white" style="padding: 20px 48px;">Скачать КП</a>
+                        <a href="#calculator" class="btn-white" style="padding: 20px 48px; background: transparent; border: 2px solid white;">Калькулятор</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-dots">
+            <div class="hero-dot active" data-slide="0"></div>
+            <div class="hero-dot" data-slide="1"></div>
+            <div class="hero-dot" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- Cases Section -->
+    <section class="cases-section" id="cases">
+        <div class="cases-header">
+            <h2>Наши кейсы</h2>
+            <p>Три подхода к созданию B2B портала: от шаблонных решений до собственной разработки</p>
+        </div>
+
+        <div class="cases-grid">
+            <!-- Case 1: ALFA Design -->
+            <div class="case-card">
+                <div class="case-card-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=200&fit=crop" alt="ALFA Design">
+                    <div class="case-badge">Шаблон</div>
+                </div>
+                <div class="case-card-content">
+                    <div class="case-provider alfa">
+                        <div class="case-provider-logo">A</div>
+                        <span class="case-provider-name">ALFA Design</span>
+                    </div>
+                    <h3>Сборка на готовом шаблоне ALFA Design</h3>
+                    <p class="case-description">Оптимальное решение для быстрого запуска B2B портала на проверенном шаблоне с базовым функционалом.</p>
+
+                    <div class="case-specs">
+                        <div class="case-spec">
+                            <div class="case-spec-label">Стоимость шаблона</div>
+                            <div class="case-spec-value">250 000 ₽</div>
+                        </div>
+                        <div class="case-spec">
+                            <div class="case-spec-label">Сроки сборки</div>
+                            <div class="case-spec-value">2,5-3 мес</div>
+                        </div>
+                        <div class="case-spec">
+                            <div class="case-spec-label">Аренда/внедрение</div>
+                            <div class="case-spec-value">от 15 500 ₽</div>
+                        </div>
+                    </div>
+
+                    <div class="case-features">
+                        <h5>Плюсы:</h5>
+                        <div class="case-features-grid">
+                            <div class="case-feature positive">✓ Готовый шаблон</div>
+                            <div class="case-feature positive">✓ Быстрая настройка</div>
+                            <div class="case-feature positive">✓ Стандартный функционал</div>
+                        </div>
+                        <h5 style="margin-top: 12px;">Минусы:</h5>
+                        <div class="case-features-grid">
+                            <div class="case-feature negative">✗ Ограниченная кастомизация</div>
+                            <div class="case-feature negative">✗ Стандартный дизайн</div>
+                        </div>
+                    </div>
+
+                    <div class="case-price">
+                        <div class="case-price-info">
+                            <div class="case-price-label">Стоимость сборки</div>
+                            <div class="case-price-value">от 750 000 ₽</div>
+                        </div>
+                    </div>
+
+                    <div class="case-cta">
+                        <div class="case-cta-minimal">
+                            <div class="case-cta-email">
+                                <input type="email" placeholder="Ваша почта">
+                            </div>
+                            <button class="case-cta-btn" onclick="downloadCase('alfa')">Прислать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 2: Fact Digital Argument -->
+            <div class="case-card">
+                <div class="case-card-image">
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=200&fit=crop" alt="Fact Digital">
+                    <div class="case-badge">Премиум</div>
+                </div>
+                <div class="case-card-content">
+                    <div class="case-provider fact">
+                        <div class="case-provider-logo">F</div>
+                        <span class="case-provider-name">Fact Digital</span>
+                    </div>
+                    <h3>Решение Argument от Fact Digital</h3>
+                    <p class="case-description">Мощная B2B платформа "Аргумент" с расширенным функционалом и возможностями кастомизации.</p>
+
+                    <div class="case-specs">
+                        <div class="case-spec">
+                            <div class="case-spec-label">Стоимость шаблона</div>
+                            <div class="case-spec-value">750 000 ₽</div>
+                        </div>
+                        <div class="case-spec">
+                            <div class="case-spec-label">Сроки сборки</div>
+                            <div class="case-spec-value">3-4 мес</div>
+                        </div>
+                        <div class="case-spec">
+                            <div class="case-spec-label">Аренда/внедрение</div>
+                            <div class="case-spec-value">от 25 000 ₽</div>
+                        </div>
+                    </div>
+
+                    <div class="case-features">
+                        <h5>Плюсы:</h5>
+                        <div class="case-features-grid">
+                            <div class="case-feature positive">✓ Расширенный функционал</div>
+                            <div class="case-feature positive">✓ Гибкая настройка</div>
+                            <div class="case-feature positive">✓ API интеграции</div>
+                            <div class="case-feature positive">✓ Поддержка вендора</div>
+                        </div>
+                        <h5 style="margin-top: 12px;">Минусы:</h5>
+                        <div class="case-features-grid">
+                            <div class="case-feature negative">✗ Высокая стоимость</div>
+                            <div class="case-feature negative">✗ Зависимость от поставщика</div>
+                        </div>
+                    </div>
+
+                    <div class="case-price">
+                        <div class="case-price-info">
+                            <div class="case-price-label">Стоимость сборки</div>
+                            <div class="case-spec-value">от 1 200 000 ₽</div>
+                        </div>
+                    </div>
+
+                    <div class="case-cta">
+                        <div class="case-cta-minimal">
+                            <div class="case-cta-email">
+                                <input type="email" placeholder="Ваша почта">
+                            </div>
+                            <button class="case-cta-btn" onclick="downloadCase('fact')">Прислать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 3: S-ALPHA Solution -->
+            <div class="case-card">
+                <div class="case-card-image">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=200&fit=crop" alt="S-ALPHA">
+                    <div class="case-badge">Собственное</div>
+                </div>
+                <div class="case-card-content">
+                    <div class="case-provider s-alpha">
+                        <div class="case-provider-logo">S</div>
+                        <span class="case-provider-name">S-ALPHA</span>
+                    </div>
+                    <h3>На базе собственного решения</h3>
+                    <p class="case-description">Гибкое собственное решение с быстрым внедрением и адаптацией под требования заказчика.</p>
+
+                    <div class="case-specs">
+                        <div class="case-spec">
+                            <div class="case-spec-label">Стоимость разработки</div>
+                            <div class="case-spec-value">550 000 ₽</div>
+                        </div>
+                        <div class="case-spec">
+                            <div class="case-spec-label">Аренда внедрение</div>
+                            <div class="case-spec-value">3 недели</div>
+                        </div>
+                        <div class="case-spec">
+                            <div class="case-spec-label">Запуск MVP</div>
+                            <div class="case-spec-value">2,5-6 мес</div>
+                        </div>
+                    </div>
+
+                    <div class="case-features">
+                        <h5>Преимущества:</h5>
+                        <div class="case-features-grid">
+                            <div class="case-feature positive">✓ Быстрое внедрение</div>
+                            <div class="case-feature positive">✓ Гибкая адаптация</div>
+                            <div class="case-feature positive">✓ Поддержка 24/7</div>
+                            <div class="case-feature positive">✓ Оптимальная цена</div>
+                            <div class="case-feature positive">✓ Независимость</div>
+                            <div class="case-feature positive">✓ Масштабирование</div>
+                        </div>
+                    </div>
+
+                    <div class="case-price">
+                        <div class="case-price-info">
+                            <div class="case-price-label">Стоимость разработки</div>
+                            <div class="case-spec-value">550 000 ₽</div>
+                        </div>
+                    </div>
+
+                    <div class="case-cta">
+                        <div class="case-cta-minimal">
+                            <div class="case-cta-email">
+                                <input type="email" placeholder="Ваша почта">
+                            </div>
+                            <button class="case-cta-btn" onclick="downloadCase('s-alpha')">Прислать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="calculator-section" id="calculator">
+        <div class="calc-content">
+            <div class="calc-header">
+                <h2>Рассчитайте стоимость B2B портала</h2>
+                <p>Выберите тип проекта и получите точный расчёт</p>
+            </div>
+
+            <div class="calc-tabs">
+                <button class="calc-tab active" onclick="switchTab('rental')">
+                    <span>🏠</span> Аренда портала
+                </button>
+                <button class="calc-tab" onclick="switchTab('creation')">
+                    <span>🚀</span> Создание под ключ
+                </button>
+            </div>
+
+            <!-- Rental Panel -->
+            <div class="calc-panel active" id="rental">
+                <div class="calc-fields">
+                    <div class="calc-field">
+                        <label>Тип портала</label>
+                        <select id="rental-type">
+                            <option value="15000">B2B портал</option>
+                            <option value="12000">Интернет-магазин</option>
+                            <option value="10000">Клиентский кабинет</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Количество пользователей</label>
+                        <select id="rental-users">
+                            <option value="1">до 100</option>
+                            <option value="1.2">100-500</option>
+                            <option value="1.4">500-1000</option>
+                            <option value="1.6">1000+</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Интеграция с 1С</label>
+                        <select id="rental-1c" multiple size="3">
+                            <option value="0">Без интеграции</option>
+                            <option value="3000">Обмен товарами и ценами</option>
+                            <option value="5000">Обмен контрагентами</option>
+                            <option value="4000">Обмен документами</option>
+                            <option value="6000">Полная интеграция</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Интеграция с Битрикс-24</label>
+                        <select id="rental-bitrix" multiple size="2">
+                            <option value="0">Без интеграции</option>
+                            <option value="2000">Базовая (лиды, сделки)</option>
+                            <option value="4000">Расширенная (лиды, сделки, контакты)</option>
+                        </select>
+                    </div>
+                    <div class="calc-field full">
+                        <label>Дополнительные модули</label>
+                        <select id="rental-modules" multiple size="3">
+                            <option value="0">Базовая комплектация</option>
+                            <option value="10000">Модуль контрагентов (+10 000 ₽)</option>
+                            <option value="15000">Модуль скидок (+15 000 ₽)</option>
+                            <option value="10000">Бонусная система (+10 000 ₽)</option>
+                            <option value="8000">Работа с прайс-листами (+8 000 ₽)</option>
+                        </select>
+                    </div>
+                    <div class="calc-field full">
+                        <label>Период аренды</label>
+                        <select id="rental-months">
+                            <option value="1">1 месяц</option>
+                            <option value="3">3 месяца (скидка 5%)</option>
+                            <option value="6">6 месяцев (скидка 10%)</option>
+                            <option value="12">12 месяцев (скидка 20%)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="calc-result">
+                    <h3>Стоимость аренды</h3>
+                    <div class="price" id="rental-price">15 000 ₽</div>
+                    <div class="period" id="rental-total">за первый месяц</div>
+                    <button class="btn-calc">Заказать аренду</button>
+                </div>
+            </div>
+
+            <!-- Creation Panel -->
+            <div class="calc-panel" id="creation">
+                <div class="calc-fields">
+                    <div class="calc-field full">
+                        <label>Тип проекта</label>
+                        <select id="creation-type">
+                            <option value="250000">MVP (минимальная версия)</option>
+                            <option value="450000">Стандартный портал</option>
+                            <option value="750000">Под ключ с гарантией</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Сроки запуска</label>
+                        <select id="creation-timeline">
+                            <option value="1.2">2 месяца (срочно)</option>
+                            <option value="1">3-4 месяца (стандарт)</option>
+                            <option value="0.9">5-6 месяцев (комфортный)</option>
+                            <option value="0.85">6-8 месяцев (премиум)</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Интеграция с 1С</label>
+                        <select id="creation-1c">
+                            <option value="0">Без интеграции</option>
+                            <option value="50000">Частичная (товары, цены)</option>
+                            <option value="80000">Расширенная (+ контрагенты)</option>
+                            <option value="150000">Полная (все модули)</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Интеграция с Битрикс-24</label>
+                        <select id="creation-bitrix">
+                            <option value="0">Не нужна</option>
+                            <option value="30000">Базовая</option>
+                            <option value="60000">Расширенная</option>
+                        </select>
+                    </div>
+                    <div class="calc-field full">
+                        <label>Дополнительные модули (можно выбрать несколько)</label>
+                        <select id="creation-modules" multiple size="4">
+                            <option value="0">Базовая комплектация</option>
+                            <option value="30000">Модуль контрагентов</option>
+                            <option value="50000">Модуль скидок и договоров</option>
+                            <option value="40000">Бонусная система</option>
+                            <option value="35000">Работа с прайс-листами</option>
+                            <option value="25000">Модуль менеджеров</option>
+                            <option value="30000">Умные загрузки</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Дизайн</label>
+                        <select id="creation-design">
+                            <option value="1">Шаблонный</option>
+                            <option value="1.5">Индивидуальный</option>
+                            <option value="2">Премиум</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Дополнительно</label>
+                        <select id="creation-extra">
+                            <option value="0">Без дополнений</option>
+                            <option value="20000">SEO-пакет</option>
+                            <option value="15000">Обучение команды</option>
+                            <option value="30000">SEO + Обучение</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="calc-result">
+                    <h3>Стоимость разработки</h3>
+                    <div class="price" id="creation-price">250 000 ₽</div>
+                    <div class="period" id="creation-timeline-text">от 2 месяцев</div>
+                    <button class="btn-calc">Обсудить проект</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section with Team -->
+    <section class="blog-section" id="blog">
+        <div class="blog-content">
+            <div class="blog-main">
+                <div class="blog-header">
+                    <h2>Блог разработчиков</h2>
+                    <p style="font-size: 18px; color: var(--text-gray);">Технические статьи, кейсы и инсайты от нашей команды</p>
+                </div>
+
+                <!-- Featured Article -->
+                <article class="article-featured">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop" class="article-featured-image" alt="Featured">
+                    <div class="article-featured-overlay">
+                        <div class="article-tags">
+                            <span class="article-tag">Интеграция</span>
+                            <span class="article-tag">1С</span>
+                        </div>
+                        <h3>Полное руководство по интеграции B2B портала с 1С Предприятие</h3>
+                        <p>Разбираем все аспекты интеграции: от настройки обмена данными до обработки ошибок и мониторинга синхронизации.</p>
+                        <div class="article-featured-meta">
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <div class="article-author-avatar">А</div>
+                                <div>
+                                    <div style="font-weight: 700;">Александр</div>
+                                    <div style="font-size: 13px; opacity: 0.8;">Backend Developer • 15 мин чтения</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Grid -->
+                <div class="article-grid">
+                    <article class="article-card">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=250&fit=crop" class="article-card-image" alt="Article">
+                        <div class="article-card-content">
+                            <div class="article-card-tags">
+                                <span class="article-card-tag">Интеграция</span>
+                                <span class="article-card-tag">1С</span>
+                            </div>
+                            <h3>Модуль B2B-KTR: выгрузка контрагентов из 1С</h3>
+                            <p class="article-card-excerpt">Подробный разбор модуля для автоматизации обмена контрагентами между 1С и B2B порталом.</p>
+                            <div class="article-card-meta">
+                                <div class="article-card-author">
+                                    <div class="article-card-author-avatar">А</div>
+                                    <span class="article-card-author-name">Александр</span>
+                                </div>
+                                <span class="article-card-date">23.04.2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=250&fit=crop" class="article-card-image" alt="Article">
+                        <div class="article-card-content">
+                            <div class="article-card-tags">
+                                <span class="article-card-tag">Техническое</span>
+                                <span class="article-card-tag">API</span>
+                            </div>
+                            <h3>Техническая реализация B2B портала: собственное API</h3>
+                            <p class="article-card-excerpt">Как мы строим архитектуру B2B порталов с собственным API и системой мониторинга.</p>
+                            <div class="article-card-meta">
+                                <div class="article-card-author">
+                                    <div class="article-card-author-avatar">А</div>
+                                    <span class="article-card-author-name">Александр</span>
+                                </div>
+                                <span class="article-card-date">14.05.2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=250&fit=crop" class="article-card-image" alt="Article">
+                        <div class="article-card-content">
+                            <div class="article-card-tags">
+                                <span class="article-card-tag">Функционал</span>
+                                <span class="article-card-tag">B2B</span>
+                            </div>
+                            <h3>Функционал менеджера B2B портала</h3>
+                            <p class="article-card-excerpt">Обзор возможностей менеджерского интерфейса: прайс-листы, цены, точки доставки.</p>
+                            <div class="article-card-meta">
+                                <div class="article-card-author">
+                                    <div class="article-card-author-avatar">М</div>
+                                    <span class="article-card-author-name">Максим</span>
+                                </div>
+                                <span class="article-card-date">30.04.2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=250&fit=crop" class="article-card-image" alt="Article">
+                        <div class="article-card-content">
+                            <div class="article-card-tags">
+                                <span class="article-card-tag">Аренда</span>
+                            </div>
+                            <h3>Аренда b2b-портала или создание под ключ?</h3>
+                            <p class="article-card-excerpt">Сравниваем оба подхода и помогаем выбрать оптимальное решение.</p>
+                            <div class="article-card-meta">
+                                <div class="article-card-author">
+                                    <div class="article-card-author-avatar">Е</div>
+                                    <span class="article-card-author-name">Елена</span>
+                                </div>
+                                <span class="article-card-date">23.04.2026</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Team Section -->
+                <div class="team-section">
+                    <h3>Наша команда</h3>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-photo">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=250&fit=crop" alt="Александр">
+                                <div class="team-social">
+                                    <a href="#">Блог</a>
+                                    <a href="#">GH</a>
+                                    <a href="#">in</a>
+                                </div>
+                            </div>
+                            <div class="team-info">
+                                <div class="team-name">Александр</div>
+                                <div class="team-role">Backend Developer</div>
+                                <p class="team-bio">Разрабатываю архитектуру B2B порталов, интеграции с 1С и API. 10 лет опыта.</p>
+                                <div class="team-articles">
+                                    <h5>Последние статьи:</h5>
+                                    <a href="#" class="team-article-link">→ Интеграция 1С с B2B порталом</a>
+                                    <a href="#" class="team-article-link">→ Техническая реализация API</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="team-photo">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop" alt="Максим">
+                                <div class="team-social">
+                                    <a href="#">Блог</a>
+                                    <a href="#">GH</a>
+                                    <a href="#">Dr</a>
+                                </div>
+                            </div>
+                            <div class="team-info">
+                                <div class="team-name">Максим</div>
+                                <div class="team-role">Frontend Developer</div>
+                                <p class="team-bio">Создаю современные пользовательские интерфейсы для B2B порталов. Vue.js, React.</p>
+                                <div class="team-articles">
+                                    <h5>Последние статьи:</h5>
+                                    <a href="#" class="team-article-link">→ Функционал менеджера B2B</a>
+                                    <a href="#" class="team-article-link">→ Оптимизация интерфейсов</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="team-photo">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=250&fit=crop" alt="Елена">
+                                <div class="team-social">
+                                    <a href="#">Блог</a>
+                                    <a href="#">GH</a>
+                                    <a href="#">TG</a>
+                                </div>
+                            </div>
+                            <div class="team-info">
+                                <div class="team-name">Елена</div>
+                                <div class="team-role">Backend Developer</div>
+                                <p class="team-bio">Специализируюсь на интеграции 1С Предприятие с веб-системами. Модули обмена.</p>
+                                <div class="team-articles">
+                                    <h5>Последние статьи:</h5>
+                                    <a href="#" class="team-article-link">→ Модуль B2B-SKIDKI</a>
+                                    <a href="#" class="team-article-link">→ Аренда vs Покупка</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; padding-top: 40px;">
+                    <a href="#" class="btn-white" style="background: var(--primary-red); color: white;">Все статьи блога →</a>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="blog-sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Последние статьи</h3>
+                    <ul class="sidebar-list">
+                        <li>
+                            <a href="#">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&h=60&fit=crop" class="sidebar-list-thumb" alt="">
+                                <span>Модуль B2B-KTR: выгрузка контрагентов</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=100&h=60&fit=crop" class="sidebar-list-thumb" alt="">
+                                <span>Техническая реализация B2B портала</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=60&fit=crop" class="sidebar-list-thumb" alt="">
+                                <span>Функционал менеджера B2B</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Популярные теги</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <a href="#" style="padding: 6px 14px; background: var(--gray-light); border-radius: 20px; text-decoration: none; color: var(--text-dark); font-size: 12px; font-weight: 600;">B2B порталы</a>
+                        <a href="#" style="padding: 6px 14px; background: var(--gray-light); border-radius: 20px; text-decoration: none; color: var(--text-dark); font-size: 12px; font-weight: 600;">Интеграция 1С</a>
+                        <a href="#" style="padding: 6px 14px; background: var(--gray-light); border-radius: 20px; text-decoration: none; color: var(--text-dark); font-size: 12px; font-weight: 600;">Битрикс</a>
+                        <a href="#" style="padding: 6px 14px; background: var(--gray-light); border-radius: 20px; text-decoration: none; color: var(--text-dark); font-size: 12px; font-weight: 600;">Аренда</a>
+                        <a href="#" style="padding: 6px 14px; background: var(--gray-light); border-radius: 20px; text-decoration: none; color: var(--text-dark); font-size: 12px; font-weight: 600;">Модули</a>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Рубрики</h3>
+                    <ul class="sidebar-list">
+                        <li><a href="#">📝 Блог разработчиков</a></li>
+                        <li><a href="#">📚 Статьи по B2B</a></li>
+                        <li><a href="#">🎬 Видео материалы</a></li>
+                        <li><a href="#">📖 Глоссарий</a></li>
+                        <li><a href="#">🏷️ Теги</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Подписаться на блог</h3>
+                    <div style="background: var(--gray-light); padding: 24px; border-radius: 16px;">
+                        <p style="font-size: 14px; color: var(--text-gray); margin-bottom: 16px;">Получайте новые статьи на почту</p>
+                        <input type="email" placeholder="Ваш email" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 12px;">
+                        <button style="width: 100%; padding: 12px; background: var(--primary-red); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;">Подписаться</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compact CP Section -->
+    <section class="cp-section" id="cp">
+        <div class="cp-content">
+            <h2>Получите коммерческое предложение</h2>
+            <p>Выберите тип КП и получите подробную информацию на почту</p>
+            <div class="cp-form-compact">
+                <input type="text" placeholder="Ваше имя">
+                <input type="email" placeholder="Ваша почта">
+                <select class="cp-select">
+                    <option value="rental">Аренда портала</option>
+                    <option value="creation">Сборка портала</option>
+                </select>
+                <button>Скачать КП</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Related Articles -->
+    <section class="related-articles">
+        <div class="related-content">
+            <div class="related-header">
+                <h2>Статьи по теме</h2>
+                <p>Все рубрики и материалы по B2B тематике с детальной информацией</p>
+            </div>
+
+            <div class="related-grid">
+                <!-- Собственные разработки -->
+                <div class="related-category">
+                    <div class="related-category-header">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=200&fit=crop" alt="Собственный портал">
+                        <div class="related-category-overlay">
+                            <h3>Собственный портал</h3>
+                            <p>Разработка с нуля</p>
+                        </div>
+                    </div>
+                    <div class="related-subcategories">
+                        <div class="related-subcategory">
+                            <h4>Основные разделы</h4>
+                            <ul class="related-articles-list">
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=60&fit=crop" alt="">Архитектура B2B портала</a></li>
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=100&h=60&fit=crop" alt="">Собственное API</a></li>
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=100&h=60&fit=crop" alt="">База данных</a></li>
+                            </ul>
+                        </div>
+                        <div class="related-subcategory">
+                            <h4>Под темой</h4>
+                            <ul class="related-articles-list">
+                                <li><a href="#">#MVP подход</a></li>
+                                <li><a href="#">#Микросервисы</a></li>
+                                <li><a href="#">#Масштабирование</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="related-tags">
+                        <h4>Связанные теги</h4>
+                        <div class="related-tags-cloud">
+                            <a href="#" class="related-tag">#S-ALPHA</a>
+                            <a href="#" class="related-tag">#Backend</a>
+                            <a href="#" class="related-tag">#Frontend</a>
+                            <a href="#" class="related-tag">#DevOps</a>
+                            <a href="#" class="related-tag">#Architecture</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Интеграция с 1С -->
+                <div class="related-category">
+                    <div class="related-category-header">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=200&fit=crop" alt="Интеграция 1С">
+                        <div class="related-category-overlay">
+                            <h3>Интеграция с 1С</h3>
+                            <p>Полная синхронизация</p>
+                        </div>
+                    </div>
+                    <div class="related-subcategories">
+                        <div class="related-subcategory">
+                            <h4>Основные разделы</h4>
+                            <ul class="related-articles-list">
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&h=70&fit=crop" alt="">Обмен товарами</a></li>
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=100&h=70&fit=crop" alt="">Обмен контрагентами</a></li>
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=70&fit=crop" alt="">Обмен документами</a></li>
+                                <li><a href="#">Синхронизация цен</a></li>
+                            </ul>
+                        </div>
+                        <div class="related-subcategory">
+                            <h4>Модули обмена</h4>
+                            <ul class="related-articles-list">
+                                <li><a href="#">#B2B-KTR</a></li>
+                                <li><a href="#">#B2B-SKIDKI</a></li>
+                                <li><a href="#">#Бонусная система</a></li>
+                                <li><a href="#">#Умные загрузки</a></li>
+                            </ul>
+                        </div>
+                        <div class="related-subcategory">
+                            <h4>Техническое</h4>
+                            <ul class="related-articles-list">
+                                <li><a href="#">Настройка обмена</a></li>
+                                <li><a href="#">Мониторинг обменов</a></li>
+                                <li><a href="#">Обработка ошибок</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="related-tags">
+                        <h4>Связанные теги</h4>
+                        <div class="related-tags-cloud">
+                            <a href="#" class="related-tag">#1СПредприятие</a>
+                            <a href="#" class="related-tag">#Интеграции</a>
+                            <a href="#" class="related-tag">#ОбменДанными</a>
+                            <a href="#" class="related-tag">#API</a>
+                            <a href="#" class="related-tag">#Синхронизация</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Битрикс интеграции -->
+                <div class="related-category">
+                    <div class="related-category-header">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=200&fit=crop" alt="Битрикс">
+                        <div class="related-category-overlay">
+                            <h3>Интеграция Битрикс</h3>
+                            <p>CRM и автоматизация</p>
+                        </div>
+                    </div>
+                    <div class="related-subcategories">
+                        <div class="related-subcategory">
+                            <h4>Битрикс-24</h4>
+                            <ul class="related-articles-list">
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=70&fit=crop" alt="">Лиды из Б24</a></li>
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=100&h=70&fit=crop" alt="">Сделки в Б24</a></li>
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=100&h=70&fit=crop" alt="">Контакты</a></li>
+                            </ul>
+                        </div>
+                        <div class="related-subcategory">
+                            <h4>Умный обмен</h4>
+                            <ul class="related-articles-list">
+                                <li><a href="#">Номенклатура</a></li>
+                                <li><a href="#">Цены</a></li>
+                                <li><a href="#">Остатки</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="related-tags">
+                        <h4>Связанные теги</h4>
+                        <div class="related-tags-cloud">
+                            <a href="#" class="related-tag">#Битрикс24</a>
+                            <a href="#" class="related-tag">#CRM</a>
+                            <a href="#" class="related-tag">#Автоматизация</a>
+                            <a href="#" class="related-tag">#Лиды</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Модули B2B -->
+                <div class="related-category">
+                    <div class="related-category-header">
+                        <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400&h=200&fit=crop" alt="Модули">
+                        <div class="related-category-overlay">
+                            <h3>Модули B2B</h3>
+                            <p>Расширьте возможности</p>
+                        </div>
+                    </div>
+                    <div class="related-subcategories">
+                        <div class="related-subcategory">
+                            <h4>Основные модули</h4>
+                            <ul class="related-articles-list">
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&h=70&fit=crop" alt="">Контрагенты</a></li>
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=100&h=70&fit=crop" alt="">Скидки</a></li>
+                                <li><a href="#"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=70&fit=crop" alt="">Бонусы</a></li>
+                                <li><a href="#">Прайс-листы</a></li>
+                            </ul>
+                        </div>
+                        <div class="related-subcategory">
+                            <h4>Дополнительно</h4>
+                            <ul class="related-articles-list">
+                                <li><a href="#">Умные загрузки</a></li>
+                                <li><a href="#">Точки отгрузки</a></li>
+                                <a href="#">Договоры</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="related-tags">
+                        <h4>Связанные теги</h4>
+                        <div class="related-tags-cloud">
+                            <a href="#" class="related-tag">#B2BKTR</a>
+                            <a href="#" class="related-tag">#B2BSKIDKI</a>
+                            <a href="#" class="related-tag">#Бонусы</a>
+                            <a href="#" class="related-tag">#ПрайсЛисты</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <div class="cta-bg"></div>
+        <div class="cta-content">
+            <h2>Готовы начать проект?</h2>
+            <p>Оставьте заявку и получите бесплатную консультацию по автоматизации вашего B2B бизнеса</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-white">📞 Заказать звонок</a>
+                <a href="tel:+78124673477" class="btn-white" style="background: transparent; border: 2px solid white; display: inline-flex; align-items: center; gap: 8px;">
+                    📞 +7 (812) 467-34-77
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    S-ALPHA<span>.B2B</span>
+                </div>
+                <p>Создаём современные B2B порталы с интеграцией 1С. Аренда и разработка под ключ с 2010 года. Более 500 успешных проектов.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Услуги</h4>
+                <a href="#">Создание портала</a>
+                <a href="#">Аренда</a>
+                <a href="#">Модули</a>
+                <a href="#">Интеграции</a>
+            </div>
+            <div class="footer-column">
+                <h4>Контент</h4>
+                <a href="#">Блог разработчиков</a>
+                <a href="#">Статьи по B2B</a>
+                <a href="#">Видео</a>
+                <a href="#">Глоссарий</a>
+            </div>
+            <div class="footer-column">
+                <h4>Компания</h4>
+                <a href="#">О нас</a>
+                <a href="#">Команда</a>
+                <a href="#">Клиенты</a>
+                <a href="#">Карьера</a>
+            </div>
+            <div class="footer-column">
+                <h4>Контакты</h4>
+                <a href="tel:+78124673477">+7 (812) 467-34-77</a>
+                <a href="mailto:info@s-alpha.ru">info@s-alpha.ru</a>
+                <a href="#">ВКонтакте</a>
+                <a href="#">Telegram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 ООО "АЛЬФА". Все права защищены.</span>
+            <div style="display: flex; gap: 24px;">
+                <a href="#" style="color: inherit;">Политика конфиденциальности</a>
+                <a href="#" style="color: inherit;">Условия использования</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Hero slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.hero-dot');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+
+        setInterval(() => {
+            showSlide((currentSlide + 1) % slides.length);
+        }, 5000);
+
+        // Case download functions
+        function downloadCase(type) {
+            const email = event.target.closest('.case-cta').querySelector('input').value;
+            if (!email) {
+                alert('Пожалуйста, введите вашу почту');
+                return;
+            }
+            alert(`Информация о кейсе (${type}) будет отправлена на ${email}`);
+        }
+
+        // Calculator functions
+        function switchTab(tab) {
+            document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+            event.target.closest('.calc-tab').classList.add('active');
+            document.getElementById(tab).classList.add('active');
+        }
+
+        function updateRentalPrice() {
+            const type = parseInt(document.getElementById('rental-type').value);
+            const users = parseFloat(document.getElementById('rental-users').value);
+            const c1Selected = Array.from(document.getElementById('rental-1c').selectedOptions);
+            const bitrixSelected = Array.from(document.getElementById('rental-bitrix').selectedOptions);
+            const months = parseInt(document.getElementById('rental-months').value);
+
+            let c1Cost = 0;
+            c1Selected.forEach(option => {
+                const value = parseInt(option.value);
+                if (value > 0) c1Cost += value;
+            });
+
+            let bitrixCost = 0;
+            bitrixSelected.forEach(option => {
+                const value = parseInt(option.value);
+                if (value > 0) bitrixCost += value;
+            });
+
+            let discount = 1;
+            let periodText = 'за первый месяц';
+
+            if (months === 3) {
+                discount = 0.95;
+                periodText = 'за 3 месяца (скидка 5%)';
+            } else if (months === 6) {
+                discount = 0.9;
+                periodText = 'за 6 месяцев (скидка 10%)';
+            } else if (months === 12) {
+                discount = 0.8;
+                periodText = 'за 12 месяцев (скидка 20%)';
+            }
+
+            const modulesCost = Array.from(document.getElementById('rental-modules').selectedOptions).reduce((sum, option) => {
+                return sum + (parseInt(option.value) || 0);
+            }, 0);
+
+            const basePrice = type * users;
+            const monthlyPrice = basePrice + c1Cost + bitrixCost + modulesCost;
+            const totalPrice = Math.round(monthlyPrice * months * discount);
+            const avgMonthly = Math.round(totalPrice / months);
+
+            document.getElementById('rental-price').textContent = avgMonthly.toLocaleString('ru-RU') + ' ₽';
+            document.getElementById('rental-total').textContent = periodText + ' = ' + totalPrice.toLocaleString('ru-RU') + ' ₽';
+        }
+
+        function updateCreationPrice() {
+            const type = parseInt(document.getElementById('creation-type').value);
+            const timeline = parseFloat(document.getElementById('creation-timeline').value);
+            const c1Selected = Array.from(document.getElementById('creation-1c').selectedOptions);
+            const bitrixSelected = Array.from(document.getElementById('creation-bitrix').selectedOptions);
+            const modulesSelected = Array.from(document.getElementById('creation-modules').selectedOptions);
+            const design = parseFloat(document.getElementById('creation-design').value);
+            const extra = parseInt(document.getElementById('creation-extra').value);
+
+            let c1Cost = 0;
+            c1Selected.forEach(option => {
+                const value = parseInt(option.value);
+                if (value > 0) c1Cost += value;
+            });
+
+            let bitrixCost = 0;
+            bitrixSelected.forEach(option => {
+                const value = parseInt(option.value);
+                if (value > 0) bitrixCost += value;
+            });
+
+            let modulesCost = 0;
+            modulesSelected.forEach(option => {
+                const value = parseInt(option.value);
+                if (value > 0) modulesCost += value;
+            });
+
+            const basePrice = type * timeline;
+            const totalPrice = Math.round(basePrice + c1Cost + bitrixCost + modulesCost + extra) * design;
+
+            document.getElementById('creation-price').textContent = totalPrice.toLocaleString('ru-RU') + ' ₽';
+
+            const timelineMap = {
+                '1.2': '2 месяца (срочно)',
+                '1': '3-4 месяца (стандарт)',
+                '0.9': '5-6 месяцев (комфортный)',
+                '0.85': '6-8 месяцев (премиум)'
+            };
+
+            document.getElementById('creation-timeline-text').textContent = timelineMap[timeline.toString()];
+        }
+
+        document.querySelectorAll('#rental select').forEach(select => {
+            select.addEventListener('change', updateRentalPrice);
+        });
+
+        document.querySelectorAll('#creation select').forEach(select => {
+            select.addEventListener('change', updateCreationPrice);
+        });
+
+        updateRentalPrice();
+        updateCreationPrice();
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+    <!-- Load Header and Footer from external files -->
+    <script>
+        // Загрузка header из внешнего файла
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                const headerContainer = document.getElementById('header');
+                if (headerContainer) {
+                    headerContainer.innerHTML = data;
+                }
+            })
+            .catch(error => console.error('Error loading header:', error));
+
+        // Загрузка footer из внешнего файла
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                const footerContainer = document.getElementById('footer');
+                if (footerContainer) {
+                    footerContainer.innerHTML = data;
+                }
+            })
+            .catch(error => console.error('Error loading footer:', error));
+
+        // ==================== MOBILE NAVIGATION ====================
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+
+            mobileNav.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+
+            // Prevent body scroll when menu is open
+            if (mobileNav.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+
+            mobileNav.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close mobile menu on smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            const originalClickHandler = anchor.onclick;
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    if (document.getElementById('mobileNav').classList.contains('active')) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+        });
+
+        // ==================== TOUCH OPTIMIZATIONS ====================
+        // Add touch support for sliders
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].clientX;
+            touchEndY = e.changedTouches[0].clientY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+
+            // Only register horizontal swipes
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
+                if (diffX > 0) {
+                    nextCase(); // Swipe left
+                } else {
+                    prevCase(); // Swipe right
+                }
+            }
+        }
+
+        // Optimize for iOS 12+
+        if ('CSS' in window && CSS.supports('-webkit-touch-callout: none')) {
+            document.querySelectorAll('input, select, textarea').forEach(el => {
+                el.style.fontSize = '16px';
+            });
+        }
+
+        // ==================== RESPONSIVE CHECK ====================
+        function updateLayout() {
+            const width = window.innerWidth;
+
+            // Hide mega menus on mobile
+            if (width < 1024px) {
+                document.querySelectorAll('.mega-menu').forEach(menu => {
+                    menu.style.display = 'none';
+                });
+            } else {
+                document.querySelectorAll('.mega-menu').forEach(menu => {
+                    menu.style.display = '';
+                });
+            }
+        }
+
+        window.addEventListener('resize', updateLayout);
+        updateLayout();
+    </script>
+</body>
+</html>
